@@ -1,0 +1,40 @@
+#header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 1rem;
+  background-color: white;
+  height: 3.5rem;
+}
+
+#Logo{
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+#nav-text{
+  list-style: none;
+  display: flex;
+  padding: 5
+}
+
+#nav-text li {
+  padding: 0px 0.3rem;
+}
+
+#user{
+  display: flex;
+  align-items: center;
+}
+.user {
+  margin: 0px 0.1rem;
+  border: 2px solid rgb(63, 207, 63);
+  padding: 0px 0.6rem;
+  border-radius: 10rem;
+}
+.link-style:hover {
+color: green
+}
