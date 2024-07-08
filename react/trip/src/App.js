@@ -41,6 +41,7 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
+          <Route path="/trinregistration" element={<TrInRegistration/>}/>
         </Routes>
         <Footer />
       </>
