@@ -11,6 +11,8 @@ import { useState } from "react";
 import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
+import TrInRegistration from './pages/TrInRegistration';
+
 
 function App() {
   const [ID, setID] = useState("");
