@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -11,6 +12,17 @@ import { useState } from "react";
 import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
+=======
+import './App.css';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Main from './pages/Main';
+import Footer from './components/Footer';
+import Login from './pages/Login'
+import Test from './pages/Test';
+import Join from './pages/Join';
+import TrInRegistration from './pages/TrInRegistration';
+>>>>>>> origin/khj
 
 function App() {
   const [ID, setID] = useState("");
@@ -25,6 +37,7 @@ function App() {
           setLoginOrNot={setLoginOrNot}
         />
         <Routes>
+<<<<<<< HEAD
           <Route path="/" element={<Main />} />
           <Route
             path="/login"
@@ -39,6 +52,13 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
+=======
+          <Route path="/" element={<Main/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/join" element={<Join/>}/>
+          <Route path="/test" element={<Test/>}/>
+          <Route path="/trinregistration" element={<TrInRegistration/>}/>
+>>>>>>> origin/khj
         </Routes>
         <Footer />
       </>
