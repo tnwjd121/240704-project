@@ -41,11 +41,11 @@ export default function Header() {
               onMouseEnter={() => toggleMenu('menu2')}
               onMouseLeave={() => toggleMenu('menu2')}
             >
-              <span>정보 등록 <FaChevronDown className='react-icon'/></span>
+              <span>여행 목록<FaChevronDown className='react-icon'/></span>
               {menuStates.menu2 && (
               <ul id='side-nav'>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
+                <li><Link to='/triplist' className='link-style'>카테고리</Link></li>
+                <li><Link to='/test' className='link-style'>축제정보</Link></li>
               </ul>
               )}
             </li>
