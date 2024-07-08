@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
-import LoginFail from "./LoginFail";
 
 export default function LoginBox({ setID, setLoginOrNot }) {
   const [LoginID, setLoginID] = useState("");
   const [LoginPW, setLoginPW] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
   const LoginApi = (event) => {
@@ -26,8 +23,6 @@ export default function LoginBox({ setID, setLoginOrNot }) {
           navigate("/");
         } else {
           console.log("로그인 실패");
-          setPopupMessage("로그인 실패. 아이디 또는 비밀번호를 확인하세요.");
-          setShowPopup(true);
         }
       })
       .catch((error) => {
@@ -59,9 +54,6 @@ export default function LoginBox({ setID, setLoginOrNot }) {
         </form>
         <a href="#none">비밀번호를 잊어버리셨나요?</a>
       </div>
-      {showPopup && (
-        <LoginFail message={popupMessage} onClose={() => setShowPopup(false)} />
-      )}
     </div>
   );
 }
