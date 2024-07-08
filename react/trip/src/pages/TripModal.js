@@ -9,7 +9,7 @@ export default function TripModal({trip, fetchTrip}) {
   const[updateTrips, setUpdateTrips] = useState({
     country : "",
     region : "",
-    category : "관광",
+    category : "자연명소",
     placeName : "",
     address : "",
     description : "",
@@ -64,10 +64,13 @@ export default function TripModal({trip, fetchTrip}) {
           </label>
           <label>
             <span>카테고리</span>
-            <select onChange={handleChage} value={updateTrips.category}>
-              <option>관광</option>
+            <select id='category' onChange={handleChage} value={updateTrips.category}>
+              <option>자연명소</option>
               <option>레저</option>
-              {/* 등록과 동일하게 변경 예정*/}
+              <option>체험관광</option>
+              <option>문화유적</option>
+              <option>공연(전시)</option>
+              <option>음식점(카페)</option>
             </select>
           </label>
           <label>
