@@ -92,9 +92,8 @@ public class UserService {
 	
 	//회원 정보 업데이트
 		public Boolean UserUpdate(UserDto user) {
-			User a = new User();
 			if (uRepo.findbyID(user.getID())!=null) {
-				
+				User a = uRepo.findbyID(user.getID());
 				a.setPassword(user.getPassword());
 				a.setEmail(user.getEmail());
 				a.setName(user.getName());
