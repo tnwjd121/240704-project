@@ -3,6 +3,7 @@ package com.trip.travelinfo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import com.trip.travelinfo.service.TravelInfoService;
 
 @RestController
 @RequestMapping("/api/travel-info")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TravelInfoController {
 
     private final TravelInfoService travelInfoService;

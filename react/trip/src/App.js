@@ -11,6 +11,7 @@ import { useState } from "react";
 import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
+import TrInRegistration from './pages/TrInRegistration';
 
 function App() {
   const [ID, setID] = useState("");
@@ -39,6 +40,7 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
+          <Route path="/trinregistration" element={<TrInRegistration/>}/>
         </Routes>
         <Footer />
       </>
