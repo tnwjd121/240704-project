@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/header.css";
-=======
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import '../css/header.css'
->>>>>>> origin/bsj
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -16,21 +10,17 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
     setLoginOrNot(false);
   };
 
-<<<<<<< HEAD
-=======
-export default function Header() {
   const [menuStates, setMenuStates] = useState({
-    menu1 :false,
-    menu2 :false,
+    menu1: false,
+    menu2: false,
   });
 
   const toggleMenu = (menu) => {
     setMenuStates((prevMenus) => ({
       ...prevMenus,
-      [menu] : !prevMenus[menu],
-    }))
-  }
->>>>>>> origin/bsj
+      [menu]: !prevMenus[menu],
+    }));
+  };
   return (
     <header id="header">
       <div id="Logo">
@@ -40,48 +30,55 @@ export default function Header() {
       </div>
       <div id="nav">
         <nav>
-<<<<<<< HEAD
           <ul id="nav-text">
-            <li>
-              <Link to="/test" className="link-style">
-                테스트 메뉴
-              </Link>
-            </li>
-            <li>
-              <Link to="/test" className="link-style">
-                테스트 메뉴
-              </Link>
-=======
-          <ul id='nav-text'>
-            <li 
-                onMouseEnter={() => toggleMenu('menu1')}
-                onMouseLeave={() => toggleMenu('menu1')}
-              >
-              <span>정보 등록 <FaChevronDown className='react-icon'/></span>
-              {menuStates.menu1 && (
-              <ul id='side-nav'>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
-              </ul>
-              )}
-            </li>
-            <li 
-              onMouseEnter={() => toggleMenu('menu2')}
-              onMouseLeave={() => toggleMenu('menu2')}
+            <li
+              onMouseEnter={() => toggleMenu("menu1")}
+              onMouseLeave={() => toggleMenu("menu1")}
             >
-              <span>여행 목록<FaChevronDown className='react-icon'/></span>
-              {menuStates.menu2 && (
-              <ul id='side-nav'>
-                <li><Link to='/triplist' className='link-style'>카테고리</Link></li>
-                <li><Link to='/test' className='link-style'>축제정보</Link></li>
-              </ul>
+              <span>
+                정보 등록 <FaChevronDown className="react-icon" />
+              </span>
+              {menuStates.menu1 && (
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/test" className="link-style">
+                      사이드 메뉴
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/test" className="link-style">
+                      사이드 메뉴
+                    </Link>
+                  </li>
+                </ul>
               )}
->>>>>>> origin/bsj
+            </li>
+            <li
+              onMouseEnter={() => toggleMenu("menu2")}
+              onMouseLeave={() => toggleMenu("menu2")}
+            >
+              <span>
+                여행 목록
+                <FaChevronDown className="react-icon" />
+              </span>
+              {menuStates.menu2 && (
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/triplist" className="link-style">
+                      카테고리
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/test" className="link-style">
+                      축제정보
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
           </ul>
         </nav>
       </div>
-<<<<<<< HEAD
       <div id="user">
         <div className="user">
           {LoginOrNot ? (
@@ -105,11 +102,6 @@ export default function Header() {
             </Link>
           )}
         </div>
-=======
-      <div id='user'>
-        <div className='user'><Link to='/login'><FaRegUserCircle className='react-icon'style={{marginRight:'4px'}}/> Login</Link></div>
-        <div className='user'><Link to='/login'>Join</Link></div>
->>>>>>> origin/bsj
       </div>
     </header>
   );
