@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public interface UserRepo extends JpaRepository<User, String>{
 	
-	@Query(value = "SELECT * FROM user.user WHERE ID LIKE :id", nativeQuery = true)
+	@Query(value = "SELECT * FROM trip.user WHERE ID LIKE :id", nativeQuery = true)
 	User findbyID(@Param("id") String Id);
 	
 	
