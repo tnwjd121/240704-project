@@ -32,7 +32,7 @@ export default function Header() {
               <span>정보 등록 <FaChevronDown className='react-icon'/></span>
               {menuStates.menu1 && (
               <ul id='side-nav'>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
+                <li><Link to='/trinregistration' className='link-style'>여행 정보 등록</Link></li>
                 <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
               </ul>
               )}
