@@ -5,6 +5,7 @@ import "../css/triplist.css"
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import { GrCaretPrevious,GrCaretNext } from "react-icons/gr";
+import TripModal from './TripModal';
 
 const PAGE_SIZE = 12;
 
@@ -81,7 +82,7 @@ export default function Triplist() {
                   <p>카테고리: {trip.category}</p>
                   <p>장소명: {trip.placeName}</p>
                   <p>
-                    <MdEdit className='category-icon'/>
+                    <TripModal trip={trip} fetchTrip={fetchTrip}/>
                     <RiDeleteBin5Line className='category-icon' onClick={()=>deleteSubmit(trip._links.self.href)}/>
                   </p>
                 </div>

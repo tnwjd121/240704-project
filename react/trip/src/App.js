@@ -7,7 +7,6 @@ import Login from './pages/Login'
 import Test from './pages/Test';
 import Join from './pages/Join';
 import Triplist from './pages/Triplist'
-import TripModal from './pages/TripModal';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           <Route path="/join" element={<Join/>}/>
           <Route path="/test" element={<Test/>}/>
           <Route path="/triplist" element={<Triplist/>}/>
-          <Route path="/modal" element={<TripModal/>}/>
         </Routes>
         <Footer/>
       </>
