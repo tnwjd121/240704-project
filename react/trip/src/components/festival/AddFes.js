@@ -6,7 +6,7 @@ function AddFestival({fetchFestivals}){
   const[open,setOpen]=useState(false)
   const[festival,setFestival]=useState({
     fesName:"",
-    country:"",
+    country:"대한민국",
     region:"",
     detail:"",
     startDate:"",
@@ -20,7 +20,7 @@ function AddFestival({fetchFestivals}){
     setOpen(false)
     setFestival({
       fesName:"",
-      country:"",
+      country:"대한민국",
       region:"",
       detail:"",
       startDate:"",
@@ -52,10 +52,10 @@ function AddFestival({fetchFestivals}){
   const handleSave=()=>{
     addFestival(festival);
     handleClickClose();
-    console.log(festival)
+    // console.log(festival) 
   }
 
-  const type=[
+  const kRegion=[
     {value:"서울", label:"서울"},
     {value:"인천", label:"인천"},
     {value:"대전", label:"대전"},
@@ -83,9 +83,8 @@ function AddFestival({fetchFestivals}){
         <DialogContent>
           <Stack spacing={1} mt={1}>
             <TextField label="FesName" name="fesName" variant="standard" value={festival.fesName} onChange={handleChange} />
-            <TextField label="Country" name="country" variant="standard" value={festival.country} onChange={handleChange} />
             <TextField select label="Region" name="region" variant="standard" value={festival.region} onChange={handleChange}>
-              {type.map((option) => (
+              {kRegion.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>

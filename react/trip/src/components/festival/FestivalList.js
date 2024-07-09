@@ -27,8 +27,8 @@ function FestivalList(){
     )
 
   const columns=[
+    {headerName:'Image',width:150},
     {field:'fesName',headerName:'FesName',width:150},
-    {field:'country',headerName:'Country',width:100},
     {field:'region',headerName:'Region',width:100},
     {field:'startDate',headerName:'StartDate',width:150},
     {field:'endDate',headerName:'EndDate',width:150},
@@ -65,17 +65,17 @@ function FestivalList(){
     return (
       <div>
         <DataGrid
-            columns={columns} 
-            rows={festivals}
-            getRowId={row=>row._links.self.href}
-            disableRowSelectionOnClick={true}
-            components={{toolbar:CustomToolbar}}
+          columns={columns}
+          rows={festivals}
+          getRowId={row=>row._links.self.href}
+          disableRowSelectionOnClick={true}
+          components={{toolbar:CustomToolbar}}
         />            
         <Snackbar
-            open={open}
-            autoHideDuration={3000}
-            onClose={()=>setOpen(false)}
-            message="Book deleted"
+          open={open}
+          autoHideDuration={3000}
+          onClose={()=>setOpen(false)}
+          message="festival deleted"
         />
         <AddFestival fetchFestivals={fetchFestivals}/>
       </div>
