@@ -7,6 +7,7 @@ export default function JoinBox() {
   const [joinId, setJoinId] = useState("");
   const [joinCheck, setJoinCheck] = useState("중복 확인이 필요합니다");
   const [joinPw, setJoinPw] = useState("");
+  const [joinPw2, setJoinPw2] = useState("");
   const [joinEmail, setJoinEmail] = useState("");
   const [joinName, setJoinName] = useState("");
   const [joinGender, setJoinGender] = useState("남자");
@@ -26,15 +27,9 @@ export default function JoinBox() {
         })
         .then((data) => {
           if (data === false) {
-            setCanJoin(true);
             setJoinCheck("아이디 사용 가능");
-            console.log(data.value);
-            console.log("setCanJoin(true)");
           } else {
-            setCanJoin(false);
             setJoinCheck("중복 확인이 필요합니다");
-            console.log(data.value);
-            console.log("setCanJoin(false)");
           }
         })
         .catch((error) => {
@@ -43,7 +38,6 @@ export default function JoinBox() {
         });
     } else {
       setJoinCheck("아이디는 4자리 이상");
-      setCanJoin(false);
     }
   };
 
@@ -51,8 +45,17 @@ export default function JoinBox() {
     setJoinGender((prevGender) => (prevGender === "남자" ? "여자" : "남자"));
   };
 
+  const finalCheck = () => {
+    if (joinCheck === "아이디 사용 가능" && joinPw === joinPw2) {
+      setCanJoin(true);
+    } else {
+      setCanJoin(false);
+    }
+  };
+
   const joinNewUser = (e) => {
     e.preventDefault(); // 폼 제출 시 페이지 리로드 방지
+    finalCheck();
     const api = "http://localhost:8080/User/join";
     const joinUserBody = {
       ID: joinId,
@@ -72,16 +75,20 @@ export default function JoinBox() {
       })
         .then((response) => response.json())
         .then((data) => {
-          // 성공 시 처리
           console.log("User joined:", data);
           setPopupMessage("가입 성공");
-          navigate("/");
+          setShowPopup(true);
+          setTimeout(() => navigate("/login"), 3000);
         })
         .catch((error) => {
           console.error("Error:", error);
         });
-    } else {
+    } else if (joinCheck !== "아이디 사용 가능") {
       setPopupMessage("아이디 중복 확인이 필요합니다.");
+      setShowPopup(true);
+    } else if (joinPw === joinPw2) {
+      setPopupMessage("비밀번호가 일치하지 않습니다.");
+      setShowPopup(true);
     }
   };
 
@@ -112,7 +119,7 @@ export default function JoinBox() {
           <tr>
             <td colspan="2">
               <input
-                type="password" // 비밀번호는 보통 password 타입을 사용합니다.
+                type="password"
                 placeholder="비밀번호"
                 value={joinPw}
                 onChange={(e) => setJoinPw(e.target.value)}
@@ -122,7 +129,17 @@ export default function JoinBox() {
           <tr>
             <td colspan="2">
               <input
-                type="email" // 이메일 타입을 사용합니다.
+                type="password"
+                placeholder="비밀번호 확인"
+                value={joinPw2}
+                onChange={(e) => setJoinPw2(e.target.value)}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input
+                type="email"
                 placeholder="이메일"
                 value={joinEmail}
                 onChange={(e) => setJoinEmail(e.target.value)}
