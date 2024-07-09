@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 	
 	@Autowired
@@ -44,6 +44,12 @@ public class UserController {
 	@PutMapping("/User/update")
     public Boolean User(@RequestBody UserDto user) {
     	return uService.UserUpdate(user);
+    }
+	
+	//유저 정보 확인
+    @GetMapping("/User/Check/id={Id}")
+    public Boolean UserCheck(@PathVariable("Id") String Id) {
+    	return uService.DoubleCheck(Id);
     }
 
 	

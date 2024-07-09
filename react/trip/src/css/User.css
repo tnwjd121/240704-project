@@ -1,0 +1,34 @@
+.UserDataDiv {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  background-color: #EEEFF1;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.UserDataDiv h2 {
+  text-align: center;
+}
+
+
+.UserDataDiv tr {
+  text-align: right;
+  width: 260px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: black;
+}
+
+.UserDataDiv .td1 {
+  width: 40px;
+
+}
+
+.UserDataDiv .td2 {
+  width: 240px;
+  padding-right: 0%;
+}
+  

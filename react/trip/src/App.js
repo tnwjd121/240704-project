@@ -1,29 +1,56 @@
-import './App.css';
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Main from './pages/Main';
-import Footer from './components/Footer';
-import Login from './pages/Login'
-import Test from './pages/Test';
-import Join from './pages/Join';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Main from "./pages/Main";
+import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import Test from "./pages/Test";
+import Join from "./pages/Join";
+import User from "./pages/User";
+import { useState } from "react";
+import "./App.css";
+import Triplist from "./pages/Triplist";
+import TripModal from "./pages/TripModal";
+import TrInRegistration from './pages/TrInRegistration';
 import Festival from './pages/Festival';
+import FestivalReg from './pages/FestivalReg';
+
 
 function App() {
+  const [ID, setID] = useState("");
+  const [LoginOrNot, setLoginOrNot] = useState(false);
   return (
     <Router>
       <>
-        <Header/>
+        <Header
+          ID={ID}
+          setID={setID}
+          LoginOrNot={LoginOrNot}
+          setLoginOrNot={setLoginOrNot}
+        />
         <Routes>
-          <Route path="/" element={<Main/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/join" element={<Join/>}/>
-          <Route path="/test" element={<Test/>}/>
-          <Route path="/festival" element={<Festival/>}/>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/login"
+            element={<Login setID={setID} setLoginOrNot={setLoginOrNot} />}
+          />
+          <Route path="/join" element={<Join />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/User" element={<User ID={ID} />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/triplist" element={<Triplist />} />
+          <Route path="/modal" element={<TripModal />} />
+          <Route path="/trinregistration" element={<TrInRegistration/>}/>
+          <Route path="/festival" element={<Festival />}/>
+          <Route path="/festivalReg" element={<FestivalReg />}/>
         </Routes>
-        <Footer/>
+        <Footer />
       </>
     </Router>
-  )
+  );
 }
 
 export default App;
