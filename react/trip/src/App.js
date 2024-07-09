@@ -12,12 +12,9 @@ import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from './pages/TrInRegistration';
-<<<<<<< HEAD
 import TripDetail from "./pages/TripDetail";
-=======
 import Festival from './pages/Festival';
 import FestivalReg from './pages/FestivalReg';
->>>>>>> kkt
 
 
 function App() {
