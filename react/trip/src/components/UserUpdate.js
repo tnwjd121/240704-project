@@ -106,7 +106,7 @@ export default function UserUpdate({ ID, userData, onClose }) {
               <tr>
                 <td colSpan={2}>
                   <input
-                    type="text"
+                    type="email"
                     placeholder="이메일"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
