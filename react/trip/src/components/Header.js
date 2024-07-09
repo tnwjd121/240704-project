@@ -39,10 +39,18 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                 정보 등록 <FaChevronDown className="react-icon" />
               </span>
               {menuStates.menu1 && (
-              <ul id='side-nav'>
-                <li><Link to='/trinregistration' className='link-style'>여행 정보 등록</Link></li>
-                <li><Link to='/test' className='link-style'>사이드 메뉴</Link></li>
-              </ul>
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/trinregistration" className="link-style">
+                      여행 정보 등록
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/test" className="link-style">
+                      사이드 메뉴
+                    </Link>
+                  </li>
+                </ul>
               )}
             </li>
             <li
