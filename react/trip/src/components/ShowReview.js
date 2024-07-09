@@ -24,10 +24,10 @@ export default function ShowReview({ id }) {
     <div>
       {review.map((it) => (
         <div className="reviewbox" key={it.id}>
-          <div>여행지 : {it.travelInfo_ID}</div>
-          <div>작성자 : {it.user_ID}</div>
-          <div>점수 : {it.score}</div>
-          <div>내용 : {it.contents}</div>
+          <p>여행지 : {it.travelInfo_ID}</p>
+          <p>작성자 : {it.user_ID}</p>
+          <p>점수 : {it.score}</p>
+          <p>내용 : {it.contents}</p>
         </div>
       ))}
     </div>

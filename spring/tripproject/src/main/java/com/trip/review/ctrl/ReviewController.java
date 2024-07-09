@@ -33,6 +33,12 @@ public class ReviewController {
     	return rServe.findReviewByUserId(Id);
     }
     
+    //여행지 아이디 및 유저 아이디로 찾기
+    @GetMapping("/Review/travelinfo={Id}&userId={Id}")
+    public Review UserInfo(@PathVariable("Id") Integer TId, @PathVariable("Id") String UId) {
+    	return rServe.findReviewByTIDAndUId(TId, UId);
+    }
+    
     //리뷰 작성
     @PostMapping("/Review/Write")
     public Boolean UserJoin(@RequestBody Review review) {
