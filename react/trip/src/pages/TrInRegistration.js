@@ -72,7 +72,7 @@ export default function TrInRegistration() {
             </select>
           </label>
           <label>
-            장소 이름
+            장소명
             <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
           </label>
           <label>
@@ -80,11 +80,11 @@ export default function TrInRegistration() {
             <input type="text" name="address" value={formData.address} onChange={handleChange} />
           </label>
           <label>
-            설명
+            상세
             <textarea name="description" value={formData.description} onChange={handleChange} />
           </label>
           <label>
-            사진 URL
+            이미지 URL
             <input type="url" name="photoUrl" value={formData.photoUrl} onChange={handleChange} />
           </label>
           <button type="submit">등록</button>

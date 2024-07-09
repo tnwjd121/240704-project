@@ -6,6 +6,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import { GrCaretPrevious,GrCaretNext } from "react-icons/gr";
 import TripModal from './TripModal';
+import { useNavigate } from 'react-router-dom';
 
 const PAGE_SIZE = 12;
 
@@ -15,7 +16,8 @@ export default function Triplist() {
   // 이미지와 지역, 카테고리, 장소명
   const [trips, setTrips] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectOption, setSelectOption] = useState('국내')
+  const [selectOption, setSelectOption] = useState('국내');
+  const navigate = useNavigate();
 
   useEffect(()=>{
     fetchTrip()
@@ -57,6 +59,12 @@ export default function Triplist() {
     setCurrentPage(prev => Math.max(prev-1, 1))
   }
 
+  const getId = (data) => {
+    const href = data._links.self.href;
+    const id = href.substring(href.lastIndexOf('/') + 1)
+    navigate(`/tripDetail/${id}`)
+  }
+
 
   return (
     <div className='body'>
@@ -75,7 +83,7 @@ export default function Triplist() {
             {currentTrips.map(trip => (
               <div key={trip.id} className='category-item'>
                 <div className='img-div'>
-                  <img src={trip.photoUrl} alt={trip.placeName}></img>
+                  <img src={trip.photoUrl} alt={trip.placeName} onClick={()=>getId(trip)}></img>
                 </div>
                 <div className='category-info'>
                   <p>지역: {trip.region}</p>

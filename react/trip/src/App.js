@@ -12,6 +12,7 @@ import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from './pages/TrInRegistration';
+import TripDetail from "./pages/TripDetail";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
           <Route path="/trinregistration" element={<TrInRegistration/>}/>
+          <Route path="/tripDetail/:id" element={<TripDetail/>}></Route>
         </Routes>
         <Footer />
       </>
