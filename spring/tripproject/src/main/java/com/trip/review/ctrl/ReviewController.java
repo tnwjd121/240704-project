@@ -34,7 +34,7 @@ public class ReviewController {
     }
     
     //여행지 아이디 및 유저 아이디로 찾기
-    @GetMapping("/Review/travelinfo={Id}&userId={Id}")
+    @GetMapping("/Review/travelinfo={travelInfo_ID}&userId={user_ID}")
     public Review UserInfo(@PathVariable("Id") Integer TId, @PathVariable("Id") String UId) {
     	return rServe.findReviewByTIDAndUId(TId, UId);
     }

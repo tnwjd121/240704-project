@@ -2,36 +2,64 @@ import { useEffect, useState } from "react";
 
 export default function WriteReview({ travelInfo_ID, user_ID }) {
   const [review, setReview] = useState({});
-  const [score, setScore] = useState({});
-  const [contents, setContents] = useState({});
+  const [score, setScore] = useState("");
+  const [contents, setContents] = useState("");
 
   useEffect(() => {
     const api = `http://localhost:8080/Review/travelinfo=${travelInfo_ID}&userId=${user_ID}`;
     fetch(api)
       .then((response) => response.json())
+      .then((data) => {
+        setReview(data);
+        setScore(data.score || "");
+        setContents(data.contents || "");
+      });
+  }, [travelInfo_ID, user_ID]);
+
+  const reviewUpload = (event) => {
+    event.preventDefault();
+    const api = `http://localhost:8080/Review/Write`;
+    const writeReviewBody = {
+      travelInfo_ID: travelInfo_ID,
+      user_ID: user_ID,
+      score: score,
+      contents: contents,
+    };
+    fetch(api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(writeReviewBody),
+    })
+      .then((response) => response.json())
       .then((data) => setReview(data));
-  }, []);
+  };
 
   return (
-    <div className="reviewbox" key={it.id}>
-      <div>여행지 : {travelInfo_ID}</div>
-      <div>작성자 : {user_ID}</div>
-      <div>
-        점수 :
-        <input
-          type="int"
-          min={0}
-          max={5}
-          onChange={(e) => setScore(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        내용 :
-        <textarea
-          type="text"
-          onChange={(e) => setContents(e.target.value)}
-        ></textarea>
-      </div>
+    <div className="reviewbox" key={review.id}>
+      <form onSubmit={reviewUpload}>
+        <div>여행지 : {review.travelInfo_ID}</div>
+        <div>작성자 : {review.user_ID}</div>
+        <div>
+          점수 :
+          <input
+            type="number"
+            min={0}
+            max={5}
+            onChange={(e) => setScore(e.target.value)}
+            value={score}
+          ></input>
+        </div>
+        <div>
+          내용 :
+          <textarea
+            onChange={(e) => setContents(e.target.value)}
+            value={contents}
+          ></textarea>
+        </div>
+        <button type="submit">리뷰 작성</button>
+      </form>
     </div>
   );
 }
