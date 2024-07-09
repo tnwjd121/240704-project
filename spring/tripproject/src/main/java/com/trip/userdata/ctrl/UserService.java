@@ -91,23 +91,32 @@ public class UserService {
 	}
 	
 	//회원 정보 업데이트
-		public Boolean UserUpdate(UserDto user) {
-			if (uRepo.findbyID(user.getID())!=null) {
-				User a = uRepo.findbyID(user.getID());
-				a.setPassword(user.getPassword());
-				a.setEmail(user.getEmail());
-				a.setName(user.getName());
-				a.setGender(user.isGender());
-				a.setAge(user.getAge());
-				
-				uRepo.save(a);
-				return true;
-			}else {
-				return false;
-			}
+	public Boolean UserUpdate(UserDto user) {
+		if (uRepo.findbyID(user.getID())!=null) {
+			User a = uRepo.findbyID(user.getID());
+			a.setPassword(user.getPassword());
+			a.setEmail(user.getEmail());
+			a.setName(user.getName());
+			a.setGender(user.isGender());
+			a.setAge(user.getAge());
 			
+			uRepo.save(a);
+			return true;
+		}else {
+			return false;
 		}
+		
+	}
 	
+	//중복 아이디 확인
+	public Boolean DoubleCheck(String Id) {
+		
+		if (uRepo.findbyID(Id)!=null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	
 }

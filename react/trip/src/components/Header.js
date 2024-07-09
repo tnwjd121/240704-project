@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/header.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
 export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
+  const navigate = useNavigate();
   const LogOut = () => {
     setID("");
     setLoginOrNot(false);
+    navigate("/");
   };
 
   const [menuStates, setMenuStates] = useState({
@@ -46,6 +48,11 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/festivalReg" className="link-style">
+                      축제 등록
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/test" className="link-style">
                       사이드 메뉴
                     </Link>
@@ -69,7 +76,7 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/test" className="link-style">
+                    <Link to="/festival" className="link-style">
                       축제정보
                     </Link>
                   </li>

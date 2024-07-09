@@ -8,29 +8,27 @@
   padding: 20px;
 }
 
-h2 {
+.UserDataDiv h2 {
   text-align: center;
 }
 
 
-tr {
+.UserDataDiv tr {
   text-align: right;
-  width: 100%;
+  width: 260px;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
-  border: none;
+  border: black;
 }
 
-.td1 {
-  width: 15%;
+.UserDataDiv .td1 {
+  width: 40px;
+
 }
 
-.td2 {
-  width: 74%;
+.UserDataDiv .td2 {
+  width: 240px;
+  padding-right: 0%;
 }
-
-.td3 {
-  width: 15%;
-}
-
+  
