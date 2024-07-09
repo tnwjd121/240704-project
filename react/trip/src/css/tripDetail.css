@@ -6,13 +6,14 @@
 }
 
 #trip-detail-img img{
-  width: 30rem;
+  width: 25rem;
   height: 15rem;
   border-radius: 1rem;
-  margin-right: 2rem;
 }
 #trip-detail-text{
-  font-size: 1.4
+  font-size: 1rem;
+  margin-left: 2rem;
+  width: 23rem;
 }
 #trip-detail-text strong{
   display: inline-block;
@@ -21,4 +22,18 @@
 }
 #trip-detail-text p{
   text-align: left;
+}
+
+#map-title{
+  background-color: rgb(63, 207, 63);
+  width: 50rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin: 0 auto;
+  color: white;
+}
+
+#map{
+  margin: 0 auto;
 }
