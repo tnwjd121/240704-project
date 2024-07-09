@@ -29,7 +29,7 @@ public class Festival {
 	private int fesId;
 	
 	@Column(nullable = false)
-	private String country, region, fesName;
+	private String country, region, fesName, address, imageUrl;
 	
 	private String detail;
 	
@@ -38,17 +38,4 @@ public class Festival {
 	
 	@Column(nullable = false)
 	private Date endDate;
-	
-//	@OneToOne
-//	private AttachmentType attachmentType;
-
-	public Festival(String country, String region, String fesName, String detail, Date startDate, Date endDate) {
-		this.country = country;
-		this.region = region;
-		this.fesName = fesName;
-		this.detail = detail;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
-	
 }
