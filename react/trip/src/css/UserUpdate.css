@@ -18,8 +18,20 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  max-width: 600px;
+  max-width: 300px;
   position: relative;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal button {
+  padding-left: 10px;
 }
 
 .close {
@@ -35,3 +47,4 @@
   text-decoration: none;
   cursor: pointer;
 }
+

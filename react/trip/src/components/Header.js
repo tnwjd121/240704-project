@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/header.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
 export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
+  const navigate = useNavigate();
   const LogOut = () => {
     setID("");
     setLoginOrNot(false);
+    navigate("/");
   };
 
   const [menuStates, setMenuStates] = useState({

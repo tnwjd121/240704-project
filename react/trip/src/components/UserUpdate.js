@@ -75,45 +75,70 @@ export default function UserUpdate({ ID, userData, onClose }) {
         </span>
         {showNextPage ? (
           <form onSubmit={LoginAgain}>
-            <h2>비밀번호 재입력</h2>
-            <input
-              type="password"
-              placeholder="비밀번호"
-              onChange={(e) => setPw(e.target.value)}
-            />
-            <input type="submit" value="로그인" />
+            <table>
+              <h2>비밀번호 재입력</h2>
+              <tr>
+                <td>
+                  <input
+                    type="password"
+                    placeholder="비밀번호"
+                    onChange={(e) => setPw(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <input type="submit" value="로그인" />
+            </table>
           </form>
         ) : (
           <form onSubmit={UpdateUserData}>
             <h2>유저 정보 재입력</h2>
-            <input
-              type="text"
-              placeholder="비밀번호"
-              onChange={(e) => setPw(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="이메일"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="이름"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <div>
-              <button type="button" onClick={toggleGender}>
-                {gender}
-              </button>
-            </div>
-            <input
-              type="number"
-              placeholder="나이"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
+            <table>
+              <tr>
+                <td colSpan={2}>
+                  <input
+                    type="text"
+                    placeholder="비밀번호"
+                    value={pw}
+                    onChange={(e) => setPw(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2}>
+                  <input
+                    type="text"
+                    placeholder="이메일"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="이름"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </td>
+                <td>
+                  <button type="button" onClick={toggleGender}>
+                    {gender}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2}>
+                  <input
+                    type="number"
+                    placeholder="나이"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </td>
+              </tr>
+            </table>
             <input type="submit" value="업데이트" />
           </form>
         )}
