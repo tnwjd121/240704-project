@@ -12,6 +12,8 @@ import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from './pages/TrInRegistration';
+import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
+import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
 
 
 function App() {
@@ -42,6 +44,8 @@ function App() {
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
           <Route path="/trinregistration" element={<TrInRegistration/>}/>
+          <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
+          <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
         </Routes>
         <Footer />
       </>
