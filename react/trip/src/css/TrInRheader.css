@@ -73,7 +73,7 @@ color: green
   text-align: center;
   list-style: none;
   padding-left: 0px;
-border-radius: 10px;
+  border-radius: 10px;
 }
 #side-nav li {
   border: 1px solid  rgb(63, 207, 63);

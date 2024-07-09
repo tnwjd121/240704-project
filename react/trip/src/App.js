@@ -12,7 +12,12 @@ import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from './pages/TrInRegistration';
+<<<<<<< HEAD
 import TripDetail from "./pages/TripDetail";
+=======
+import Festival from './pages/Festival';
+import FestivalReg from './pages/FestivalReg';
+>>>>>>> kkt
 
 
 function App() {
@@ -44,6 +49,8 @@ function App() {
           <Route path="/modal" element={<TripModal />} />
           <Route path="/trinregistration" element={<TrInRegistration/>}/>
           <Route path="/tripDetail/:id" element={<TripDetail/>}></Route>
+          <Route path="/festival" element={<Festival />}/>
+          <Route path="/festivalReg" element={<FestivalReg />}/>
         </Routes>
         <Footer />
       </>

@@ -48,6 +48,11 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/festivalReg" className="link-style">
+                      축제 등록
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/test" className="link-style">
                       사이드 메뉴
                     </Link>
@@ -71,7 +76,7 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/test" className="link-style">
+                    <Link to="/festival" className="link-style">
                       축제정보
                     </Link>
                   </li>
