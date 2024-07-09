@@ -45,6 +45,12 @@ public class UserController {
     public Boolean User(@RequestBody UserDto user) {
     	return uService.UserUpdate(user);
     }
+	
+	//유저 정보 확인
+    @GetMapping("/User/Check/id={Id}")
+    public Boolean UserCheck(@PathVariable("Id") String Id) {
+    	return uService.DoubleCheck(Id);
+    }
 
 	
 }

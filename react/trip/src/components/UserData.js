@@ -55,8 +55,7 @@ export default function UserData({ ID }) {
             </tr>
             <tr>
               <td className="td1"></td>
-              <td className="td2"></td>
-              <td className="td3">
+              <td className="td2">
                 <button onClick={() => setShowUpdate(true)}>수정</button>
                 {showUpdate && (
                   <UserUpdate
