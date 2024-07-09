@@ -20,6 +20,10 @@ public class ReviewServiece {
 		return rRepo.findByUserId(userId);
 	}
 	
+	public Review findReviewByTIDAndUId(Integer travelInfo_ID, String userId) {
+		return rRepo.findByTIDAndUId(travelInfo_ID, userId);
+	}
+	
 	public boolean reviewWrite(Review review) {
 		rRepo.save(review);
 		return true;
