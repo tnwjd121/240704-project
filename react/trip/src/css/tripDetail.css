@@ -1,0 +1,24 @@
+
+#trip-detail-info{
+  display: flex;
+  justify-content: center;
+  
+}
+
+#trip-detail-img img{
+  width: 30rem;
+  height: 15rem;
+  border-radius: 1rem;
+  margin-right: 2rem;
+}
+#trip-detail-text{
+  font-size: 1.4
+}
+#trip-detail-text strong{
+  display: inline-block;
+  width: 5rem;
+  text-align: left;
+}
+#trip-detail-text p{
+  text-align: left;
+}

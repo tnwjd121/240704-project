@@ -53,6 +53,10 @@ export default function TrInRegistration() {
       <div className="registration-form-container">
         <form onSubmit={handleSubmit} className="registration-form">
           <label>
+            장소명
+            <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
+          </label>
+          <label>
             나라
             <input type="text" name="country" value={formData.country} onChange={handleChange} />
           </label>
@@ -72,19 +76,15 @@ export default function TrInRegistration() {
             </select>
           </label>
           <label>
-            장소 이름
-            <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
-          </label>
-          <label>
             주소
             <input type="text" name="address" value={formData.address} onChange={handleChange} />
           </label>
           <label>
-            설명
+            상세
             <textarea name="description" value={formData.description} onChange={handleChange} />
           </label>
           <label>
-            사진 URL
+            이미지 URL
             <input type="url" name="photoUrl" value={formData.photoUrl} onChange={handleChange} />
           </label>
           <button type="submit">등록</button>
