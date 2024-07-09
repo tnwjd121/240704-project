@@ -1,11 +1,13 @@
-#category-center{
-}
+
 .category-list{
-  width: 98%;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  height: 50rem;
+  width: 99%;
 }
 .category-item{
   width: 18rem;
