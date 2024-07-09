@@ -6,6 +6,11 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/x-data-grid
 npm install @mui/icons-material
 
+
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/x-data-grid
+npm install @mui/icons-material
+
 npm install @fortawesome/fontawesome-free
 npm install @fortawesome/fontawesome-svg-core
 npm install @fortawesome/free-solid-svg-icons
