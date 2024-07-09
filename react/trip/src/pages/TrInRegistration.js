@@ -7,10 +7,10 @@ import axios from 'axios';
 
 export default function TrInRegistration() {
   const [formData, setFormData] = useState({
+    placeName: '',
     country: '',
     region: '',
     category: '자연명소',
-    placeName: '',
     address: '',
     description: '',
     photoUrl: ''
