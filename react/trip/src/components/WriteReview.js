@@ -1,64 +1,50 @@
 import { useEffect, useState } from "react";
 import '../css/writeReview.css'
 import StarRating from "./StarRating";
+import axios from "axios";
+import { SERVER_URL } from "./Api";
 
 export default function WriteReview({ travelInfo_ID, user_ID }) {
-  const [review, setReview] = useState({});
-  const [score, setScore] = useState("");
-  const [contents, setContents] = useState("");
+  const [reviewData, setReviewData] = useState({
+    travel_info_id : travelInfo_ID,
+    user_id : user_ID,
+    score : "",
+    contents :""
+  })
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+    setReviewData((prev) =>({
+      ...prev,
+      [name]: value
+    }))
+  }
 
-  useEffect(() => {
-    const api = `http://localhost:8080/Review/travelinfo=${travelInfo_ID}&userId=${user_ID}`;
-    fetch(api)
-      .then((response) => response.json())
-      .then((data) => {
-        setReview(data);
-        setScore(data.score || "");
-        setContents(data.contents || "");
-      });
-  }, [travelInfo_ID, user_ID]);
+  const reviewUpload = async (e) => {
+    try {
+      const response = await axios.post(`${SERVER_URL}/api/reviews`, reviewData)
 
-  const reviewUpload = (event) => {
-    event.preventDefault();
-    const api = `http://localhost:8080/Review/Write`;
-    const writeReviewBody = {
-      travelInfo_ID: travelInfo_ID,
-      user_ID: user_ID,
-      score: score,
-      contents: contents,
-    };
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(writeReviewBody),
-    })
-      .then((response) => response.json())
-      .then((data) => setReview(data));
-  };
+      console.log(reviewData)
 
-  const handleScoreChange = (value) => {
-    setScore(value); // 별점 값 변경
-  };
+    } catch (error) {
+      console.error("리뷰 등록 에러 발생: ", error);
+    }
+  }
 
   return (
-    <div className="reviewbox" key={review.id}>
-      <form onSubmit={reviewUpload}>
-        <div>작성자 : {review.user_ID}</div>
+    <div className="reviewbox">
+        <div>{user_ID}</div>
         <div>
-          점수 :
-          <StarRating score={score} onScoreChange={handleScoreChange}/>
+          <StarRating score={reviewData.score} onScoreChange={(value)=> handleChange({ target : {name: 'score', value}})}/>
         </div>
         <div>
-          내용 :
+
           <textarea
-            onChange={(e) => setContents(e.target.value)}
-            value={contents}
+            name = "contents"
+            onChange={handleChange}
+            value={reviewData.contents}
           ></textarea>
         </div>
-        <button type="submit">리뷰 작성</button>
-      </form>
+        <button onClick={reviewUpload}>리뷰 작성</button>
     </div>
   );
 }
