@@ -54,7 +54,7 @@ export default function TripDetail({User_ID}) {
         <p id='map-title'>상세 지도</p>
         <Kakao address={trip.address}/>
         <WriteReview user_ID={User_ID} travelInfo_ID={id}/>
-        {/* <ShowReview/> */}
+        <ShowReview travelInfo_ID={id}/>
       </div>
     </div>
   )

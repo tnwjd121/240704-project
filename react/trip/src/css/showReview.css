@@ -1,0 +1,22 @@
+#review-box{
+  background-color: white;
+  border: 3px solid  rgb(155, 155, 155);
+  border-radius: 1rem;
+  text-align: left;
+  margin: 1rem 0rem;
+  padding: 0rem 1rem;
+  height: 8rem;
+}
+
+#review-box-top{
+  display: flex;
+  flex-direction: row;
+  /* background-color: green; */
+  height: 2rem;
+  line-height: 2rem;
+}
+#review-box-bottom{
+  display: flex;
+  align-items: center;
+  height: 5rem;
+}

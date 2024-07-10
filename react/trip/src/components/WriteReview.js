@@ -3,6 +3,7 @@ import '../css/writeReview.css'
 import StarRating from "./StarRating";
 import axios from "axios";
 import { SERVER_URL } from "./Api";
+import '../css/writeReview.css'
 
 export default function WriteReview({ travelInfo_ID, user_ID }) {
   const [reviewData, setReviewData] = useState({
@@ -32,19 +33,23 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
 
   return (
     <div className="reviewbox">
-        <div>{user_ID}</div>
+      <div id="review-top">
+        <div id="user-name">id: {user_ID}</div>
         <div>
-          <StarRating score={reviewData.score} onScoreChange={(value)=> handleChange({ target : {name: 'score', value}})}/>
+          <StarRating 
+          score={reviewData.score} 
+          onScoreChange={(value)=> handleChange({ target : {name: 'score', value}})}/>
         </div>
+      </div>
         <div>
-
           <textarea
+            id="review-text"
             name = "contents"
             onChange={handleChange}
             value={reviewData.contents}
           ></textarea>
         </div>
-        <button onClick={reviewUpload}>리뷰 작성</button>
+        <button id="review-button" onClick={reviewUpload}>리뷰 작성</button>
     </div>
   );
 }

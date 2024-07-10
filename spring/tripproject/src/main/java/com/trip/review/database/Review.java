@@ -29,11 +29,11 @@ public class Review {
     
     @ManyToOne
     @JoinColumn(name = "travelInfo_ID")
-    private Integer travelInfo_ID;
+    private TravelInfo travelInfo_ID;
     
     @ManyToOne
     @JoinColumn(name = "user_ID")
-    private String user_ID;
+    private User user_ID;
     
     private Integer score;
     

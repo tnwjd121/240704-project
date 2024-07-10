@@ -1,35 +1,41 @@
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
+import '../css/showReview.css'
+import axios from "axios";
+import { SERVER_URL } from "./Api";
+import StarRating from "./StarRating";
 
-export default function ShowReview({ id }) {
-  const [api, setApi] = useState("");
-  const [review, setReview] = useState([]);
+export default function ShowReview({travelInfo_ID}) {
+  const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
-    if (!isNaN(id)) {
-      setApi(`http://localhost:8080/Review/userId=${id}`);
-    } else {
-      setApi(`http://localhost:8080/Review/travelinfo=${id}`);
+  useEffect(()=>{
+    reviewlist()
+  },[])
+
+  const reviewlist = async () => {
+    try {
+      const response = await axios.get(`${SERVER_URL}/api/reviews`)
+      const reviewData = response.data._embedded.reviews
+      setReviews(reviewData)
+      // 현재 외래키 부분 등록이 안되어서 값이 없음
+      // 정상적으로 변경이 되면 아래 코드로 변경 예정
+      // const fiterReview = reviewData.filter(review => review.travel_info_id === travelInfo_ID)
+      // setReviews(fiterReview)
+    } catch (error) {
+      console.error("카테고리 목록 에러 발생: " , error);
     }
-  }, [id]);
+  }
 
-  useEffect(() => {
-    if (api !== "") {
-      fetch(api)
-        .then((response) => response.json())
-        .then((data) => setReview(data))
-        .catch((error) => console.error("리뷰 에러: ", error));
-    }
-  }, [api]);
 
   return (
-    <div>
-      {review.map((it) => (
-        <div className="reviewbox" key={it.id}>
-          <p>여행지 : {it.travelInfo_ID}</p>
-          <p>작성자 : {it.user_ID}</p>
-          <p>점수 : {it.score}</p>
-          <p>내용 : {it.contents}</p>
+    <div id="review-list-body">
+      {reviews.map((review, i)=>(
+      <div id="review-box" key={review.id}>
+        <div id="review-box-top">
+          <div id="user-name">id:{review.user_id}</div>
+          <div><StarRating score={review.score}/></div>
         </div>
+        <div id="review-box-bottom">{review.contents}</div>
+      </div>
       ))}
     </div>
   );
