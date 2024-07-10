@@ -13,11 +13,20 @@ import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from "./pages/TrInRegistration";
 import TripDetail from "./pages/TripDetail";
+<<<<<<< HEAD
 import Festival from "./pages/Festival";
 import FestivalReg from "./pages/FestivalReg";
 import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
+=======
+import Festival from './pages/Festival';
+import FestivalReg from './pages/FestivalReg';
+import FesDetailKorea from './pages/FesDetailKorea'
+import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
+import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
+
+>>>>>>> origin/kkt
 
 function App() {
   const [ID, setID] = useState("");
@@ -70,6 +79,7 @@ function App() {
           <Route path="/tripDetail/:id"  element={<TripDetail User_ID={Cookies.get("ID")}/>}></Route>
           <Route path="/festival" element={<Festival />}/>
           <Route path="/festivalReg" element={<FestivalReg />}/>
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
           <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
         </Routes>
