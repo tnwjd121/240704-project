@@ -61,12 +61,16 @@ public class ReviewController {
 	
 	
 	//리뷰순 랭킹 조회
-	@GetMapping("/Ranking/")
-	public List<Review> RankingReviewCount(@PathVariable("Id") String Id) {
-    	return rServe.findReviewByUserId(Id);
+	@GetMapping("/Ranking/ReviewCount")
+	public List<Review> RankingReviewCount() {
+    	return rServe.RankingReviewCount();
     }
 
-	
+	//평점순 랭킹 조회
+	@GetMapping("/Ranking/ReviewScore")
+	public List<Review> RankingReviewScore() {
+    	return rServe.RankingReviewScore();
+    }
 	
 	
 	

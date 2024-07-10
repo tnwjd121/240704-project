@@ -44,9 +44,11 @@ public class ReviewServiece {
 		return true;
 	}
 	
-	public List<Review> RankingReviewCount(Integer travelInfo_ID) {
-		return rRepo.rankByTIDsRCount(travelInfo_ID);
+	public List<Review> RankingReviewCount() {
+		return (List<Review>) rRepo.rankByRCount();
 	}
 	
-
+	public List<Review> RankingReviewScore() {
+		return (List<Review>) rRepo.rankByRScore();
+	}
 }

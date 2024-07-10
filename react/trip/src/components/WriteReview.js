@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function WriteReview({ travelInfo_ID, user_ID }) {
+export default function WriteReview({ travel_Info_ID, user_ID }) {
   const [review, setReview] = useState({});
   const [score, setScore] = useState("");
   const [contents, setContents] = useState("");
 
   useEffect(() => {
-    const api = `http://localhost:8080/Review/travelinfo=${travelInfo_ID}&userId=${user_ID}`;
+    const api = `http://localhost:8080/Review/travelinfo=${travel_Info_ID}&userId=${user_ID}`;
     fetch(api)
       .then((response) => response.json())
       .then((data) => {
@@ -14,13 +14,13 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
         setScore(data.score || "");
         setContents(data.contents || "");
       });
-  }, [travelInfo_ID, user_ID]);
+  }, [travel_Info_ID, user_ID]);
 
   const reviewUpload = (event) => {
     event.preventDefault();
     const api = `http://localhost:8080/Review/Write`;
     const writeReviewBody = {
-      travelInfo_ID: travelInfo_ID,
+      travel_Info_ID: travel_Info_ID,
       user_ID: user_ID,
       score: score,
       contents: contents,
