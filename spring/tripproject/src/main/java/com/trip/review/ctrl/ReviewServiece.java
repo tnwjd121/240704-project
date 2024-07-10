@@ -3,10 +3,14 @@ package com.trip.review.ctrl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.trip.review.database.Review;
 import com.trip.review.database.ReviewRepo;
 
+@CrossOrigin
+@Service
 public class ReviewServiece {
 	
 	@Autowired
@@ -18,6 +22,10 @@ public class ReviewServiece {
 	
 	public List<Review> findReviewByUserId(String userId) {
 		return rRepo.findByUserId(userId);
+	}
+	
+	public Review findReviewByTIDAndUId(Integer travelInfo_ID, String userId) {
+		return rRepo.findByTIDAndUId(travelInfo_ID, userId);
 	}
 	
 	public boolean reviewWrite(Review review) {

@@ -65,7 +65,10 @@ function FesReg() {
           </label>
           <label>
             나라
-            <input type="text" name="country" value={festival.country} onChange={handleChange} />
+            <select name="country" value={festival.country} onChange={handleChange}>
+              <option>국내</option>
+              <option>해외</option>
+            </select>
           </label>
           <label>
             지역
