@@ -60,3 +60,10 @@
   background-color: #ffffff; 
   color: #000000; 
 }
+
+.no-results {
+  color: green;
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+}

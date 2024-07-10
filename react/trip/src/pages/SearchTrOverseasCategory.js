@@ -58,7 +58,7 @@ const SearchTrOverseasCategory = () => {
         </div>
       </div>
       <div className="search-results">
-        {results.length > 0 && (
+        {results.length > 0 ? (
           <table>
             <thead>
               <tr>
@@ -81,6 +81,10 @@ const SearchTrOverseasCategory = () => {
               ))}
             </tbody>
           </table>
+        ) : (
+          <div className="no-results">
+            검색결과가 없습니다.
+          </div>
         )}
       </div>
     </div>
@@ -88,3 +92,4 @@ const SearchTrOverseasCategory = () => {
 };
 
 export default SearchTrOverseasCategory;
+
