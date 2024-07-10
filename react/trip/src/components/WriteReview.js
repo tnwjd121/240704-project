@@ -12,6 +12,13 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
     score : "",
     contents :""
   })
+
+  useEffect(() => {
+    setReviewData(prev => ({
+      ...prev,
+    }));
+  }, [travelInfo_ID, user_ID]);
+
   const handleChange = (event) => {
     const {name, value} = event.target;
     setReviewData((prev) =>({
@@ -22,10 +29,8 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
 
   const reviewUpload = async (e) => {
     try {
-      const response = await axios.post(`${SERVER_URL}/api/reviews`, reviewData)
-
-      console.log(reviewData)
-
+      const response = await axios.post(`${SERVER_URL}/Review/Write`, reviewData)
+      
     } catch (error) {
       console.error("리뷰 등록 에러 발생: ", error);
     }
