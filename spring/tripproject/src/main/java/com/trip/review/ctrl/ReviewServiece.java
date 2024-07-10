@@ -1,6 +1,7 @@
 package com.trip.review.ctrl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,47 +9,71 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.trip.review.database.Review;
 import com.trip.review.database.ReviewRepo;
+import com.trip.travelinfo.entity.TravelInfo;
+import com.trip.travelinfo.repository.TravelInfoRepository;
+import com.trip.userdata.database.User;
+import com.trip.userdata.database.UserRepo;
 
 @CrossOrigin
 @Service
 public class ReviewServiece {
 	
 	@Autowired
-	ReviewRepo rRepo; 
+	ReviewRepo rRepo;
 	
-	public List<Review> findReviewByTravelInfoID(Integer travelInfo_ID) {
-		return rRepo.findByTravelInfoId(travelInfo_ID);
+	@Autowired
+	TravelInfoRepository tRepo;
+	
+	@Autowired
+	UserRepo uRepo;
+	
+	public List<Review> findReviewByTravelInfoID(Integer travelInfoID) {
+		return rRepo.findByTravelInfoId(travelInfoID);
 	}
 	
 	public List<Review> findReviewByUserId(String userId) {
 		return rRepo.findByUserId(userId);
 	}
 	
-	public Review findReviewByTIDAndUId(Integer travelInfo_ID, String userId) {
-		return rRepo.findByTIDAndUId(travelInfo_ID, userId);
+	public Review findReviewByTIDAndUId(Integer travelInfoID, String userId) {
+		return rRepo.findByTIDAndUId(travelInfoID, userId);
 	}
 	
-	public boolean reviewWrite(Review review) {
-		rRepo.save(review);
-		return true;
+	public void reviewWrite(ReviewDto review) {
+		TravelInfo travelInfo = tRepo.findbyID(review.getTravelInfoId());
+	    User user = uRepo.findbyID(review.getUserId());
+	    
+	    Review newReview = new Review();
+	    newReview.setTravelInfo(travelInfo);
+	    newReview.setUser(user);
+	    newReview.setScore(review.getScore());
+	    newReview.setContents(review.getContents());
+
+	    rRepo.save(newReview);
 	}
 	
-	public boolean reviewDelete(Long Id) {
-		
+	public void reviewDelete(Long Id) {
 		rRepo.deleteById(Id);
-		return true;
 	}
 	
-	public boolean reviewUpdate(Review review) {
-		rRepo.save(review);
-		return true;
+	public void reviewUpdate(ReviewDto review) {
+		TravelInfo travelInfo = tRepo.findbyID(review.getTravelInfoId());
+	    User user = uRepo.findbyID(review.getUserId());
+	    
+	    Review newReview = new Review();
+	    newReview.setTravelInfo(travelInfo);
+	    newReview.setUser(user);
+	    newReview.setScore(review.getScore());
+	    newReview.setContents(review.getContents());
+
+	    rRepo.save(newReview);
 	}
 	
-	public List<Review> RankingReviewCount() {
-		return (List<Review>) rRepo.rankByRCount();
+	public List<CountRankDto> RankingReviewCount() {
+		return (List<CountRankDto>) rRepo.rankByRCount();
 	}
 	
-	public List<Review> RankingReviewScore() {
-		return (List<Review>) rRepo.rankByRScore();
+	public List<ScoreRankDto> RankingReviewScore() {
+		return (List<ScoreRankDto>) rRepo.rankByRScore();
 	}
 }
