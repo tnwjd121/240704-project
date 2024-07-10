@@ -26,13 +26,13 @@ public class Festival {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int fesId;
+	private Integer fesId;
 	
 	@Column(nullable = false)
-	private String country, countryName ,region, fesName, address, imageUrl;
+	private String country, fesName, address, imageUrl, price, phoneNumber, host;
 	
-	private String detail;
-	
+	private String detail, countryName, region;
+	 
 	@Column(nullable = false)
 	private Date startDate;
 	

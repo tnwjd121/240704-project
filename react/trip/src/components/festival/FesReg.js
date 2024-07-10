@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import '../../css/TrInRheader.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function FesReg() {
   const [festivals,setFestivals] = useState([])
   const [festival, setFestival] = useState({
-    country: '',
+    country: '국내',
     countryName: '',
     region: '',
     fesName: '',
+    price:'',
     address: '',
+    host:'',
+    phoneNumber:'',
     startDate: '',
     endDate: '',
     detail: '',
@@ -29,33 +34,30 @@ function FesReg() {
     .catch(err=>console.log(err))
   }
 
-  const addFes=(festival)=>{
-    if(festival.startDate>=festival.endDate){
-      alert("축제 시작 날짜와 종료날짜를 다시 확인해주세요")
-    }else{
-      fetch(
-        "http://localhost:8080/api/festivals",
-        {
-          method:"POST",
-          headers:{"content-Type":"application/json"},
-          body:JSON.stringify(festival)
-        }
-      )
-      .then(
-        response=>{
-          if(response.ok){
-            fetchFestivals();
-          }
-        }
-      )
-    }
-  }
+  const navigate = useNavigate();
 
-  const handleSave=()=>{
-    addFes(festival);
-  }
+  const handleSave=async(event)=>{
+    event.preventDefault();
+
+    if(festival.startDate>festival.endDate){
+      alert("축제 시작 날짜와 종료날짜를 다시 확인해주세요")
+    }else if(festival.region==="" && festival.countryName===""){
+      alert("지역명 혹은 국가명을 입력해주세요")
+    }else{
+      try {
+        const response = await axios.post('http://localhost:8080/api/festivals', festival);
+        console.log(response.data);
+        alert('등록이 완료되었습니다!');
+        navigate('/')
+      } catch (error) {
+        console.error('에러', error);
+        alert(`등록 중 오류가 발생했습니다: ${error.response ? error.response.data : error.message}`);
+      }
+    }
+  };
 
   const kRegion=[
+    {label:""},
     {value:"서울", label:"서울"},
     {value:"인천", label:"인천"},
     {value:"대전", label:"대전"},
@@ -91,7 +93,7 @@ function FesReg() {
               <option>해외</option>
             </select>
           </label>
-          {(festival.country==="국내" || festival.country==="") && (
+          {(festival.country==="국내") && (
             <label>
               지역
               <select type="text" name="region" value={festival.region} onChange={handleChange}>
@@ -110,15 +112,27 @@ function FesReg() {
             </label>
           )}
           <label>
+            입장료
+            <input type="text" name="price" value={festival.price} onChange={handleChange} />
+          </label>
+          <label>
             주소
             <input type="text" name="address" value={festival.address} onChange={handleChange} />
+          </label>
+          <label>
+            주최
+            <input type="text" name="host" value={festival.host} onChange={handleChange} />
+          </label>
+          <label>
+            전화번호
+            <input type="text" name="phoneNumber" value={festival.phoneNumber} onChange={handleChange} />
           </label>
           <label>
             시작일
             <input type="date" name="startDate" value={festival.startDate} onChange={handleChange} />
           </label>
           <label>
-            종료일 <span> </span>
+            종료일
             <input type="date" name="endDate" value={festival.endDate} onChange={handleChange} />
           </label>
           <label>

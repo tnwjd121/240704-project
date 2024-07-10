@@ -1,0 +1,38 @@
+#trip-detail-info{
+  display: flex;
+  justify-content: center;
+  
+}
+
+#trip-detail-img img{
+  width: 25rem;
+  height: 20rem;
+  border-radius: 1rem;
+}
+#trip-detail-text{
+  font-size: 1rem;
+  margin-left: 2rem;
+  width: 23rem;
+}
+#trip-detail-text strong{
+  display: inline-block;
+  width: 5rem;
+  text-align: left;
+}
+#trip-detail-text p{
+  text-align: left;
+}
+
+#map-title{
+  background-color: rgb(63, 207, 63);
+  width: 50rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin: 0 auto;
+  color: white;
+}
+
+#map{
+  margin: 0 auto;
+}

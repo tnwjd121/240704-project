@@ -3,7 +3,7 @@ import axios from 'axios';
 import "../../css/triplist.css"
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCaretPrevious,GrCaretNext } from "react-icons/gr";
-import TripModal from '../../pages/TripModal';
+import FesEdit from './FesEdit';
 import { useNavigate } from 'react-router-dom';
 
 const PAGE_SIZE = 12;
@@ -57,7 +57,12 @@ export default function Feslist() {
   const getId = (data) => {
     const href = data._links.self.href;
     const id = href.substring(href.lastIndexOf('/') + 1)
-    navigate(`/fesDetail/${id}`)
+    console.log(data)
+    if(data.country==='국내'){
+      navigate(`/KFesDetail/${id}`)
+    }else if(data.country==='해외'){
+      navigate(`/FFesDetail/${id}`)
+    }
   }
 
 
@@ -85,7 +90,7 @@ export default function Feslist() {
                 {festival.country==="해외" && (<p>국가명: {festival.countryName}</p>)}
                 <p>{festival.startDate} ~ {festival.endDate}</p>
                 <p>
-                  <TripModal festival={festival} fetchFestivals={fetchFestivals}/>
+                  <FesEdit festival={festival} fetchFestivals={fetchFestivals}/>
                   <RiDeleteBin5Line className='category-icon' onClick={()=>deleteSubmit(festival._links.self.href)}/>
                 </p>
               </div>

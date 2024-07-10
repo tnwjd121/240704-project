@@ -15,6 +15,7 @@ import TrInRegistration from './pages/TrInRegistration';
 import TripDetail from "./pages/TripDetail";
 import Festival from './pages/Festival';
 import FestivalReg from './pages/FestivalReg';
+import FesDetailKorea from './pages/FesDetailKorea'
 import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
 import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/tripDetail/:id" element={<TripDetail/>}></Route>
           <Route path="/festival" element={<Festival />}/>
           <Route path="/festivalReg" element={<FestivalReg />}/>
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
           <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
         </Routes>
