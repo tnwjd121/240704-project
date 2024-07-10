@@ -83,11 +83,11 @@ function FesReg() {
       <div className="registration-form-container">
         <form className="registration-form">
           <label>
-            축제이름
+            축제 이름
             <input type='text' name="fesName" value={festival.fesName} onChange={handleChange} />
           </label>
           <label>
-            나라
+            국내/해외
             <select name="country" value={festival.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
@@ -97,7 +97,7 @@ function FesReg() {
             <>
               <label>
                 국가명
-              <input type="text" name="countryName" value={festival.countryName="대한민국"} onChange={handleChange} readOnly/>
+                <input type="text" name="countryName" value={festival.countryName="대한민국"} onChange={handleChange} readOnly/>
               </label>
               <label>
                 지역
