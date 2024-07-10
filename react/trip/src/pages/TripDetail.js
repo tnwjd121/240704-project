@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import '../css/tripDetail.css'
 import Kakao from '../components/Kakao'
 import WriteReview from '../components/WriteReview'
-import ShowReview from '../components/ShowReview'
 
 export default function TripDetail({User_ID}) {
   const [trip, setTrip] = useState(null)
@@ -33,6 +32,7 @@ export default function TripDetail({User_ID}) {
       </div>
     )
   }
+
   
   return (
     <div className='body'>
@@ -54,7 +54,6 @@ export default function TripDetail({User_ID}) {
         <p id='map-title'>상세 지도</p>
         <Kakao address={trip.address}/>
         <WriteReview user_ID={User_ID} travelInfo_ID={id}/>
-        <ShowReview travelInfo_ID={id}/>
       </div>
     </div>
   )
