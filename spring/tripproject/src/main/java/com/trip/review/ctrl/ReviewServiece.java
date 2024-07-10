@@ -40,7 +40,7 @@ public class ReviewServiece {
 	}
 	
 	public void reviewWrite(ReviewDto review) {
-		TravelInfo travelInfo = tRepo.findbyID(review.getTravelInfoId());
+		TravelInfo travelInfo = tRepo.findByID(review.getTravelInfoId());
 	    User user = uRepo.findbyID(review.getUserId());
 	    
 	    Review newReview = new Review();
@@ -57,7 +57,7 @@ public class ReviewServiece {
 	}
 	
 	public void reviewUpdate(ReviewDto review) {
-		TravelInfo travelInfo = tRepo.findbyID(review.getTravelInfoId());
+		TravelInfo travelInfo = tRepo.findByID(review.getTravelInfoId());
 	    User user = uRepo.findbyID(review.getUserId());
 	    
 	    Review newReview = new Review();

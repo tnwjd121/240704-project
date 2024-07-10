@@ -11,6 +11,6 @@ import com.trip.travelinfo.entity.TravelInfo;
 public interface TravelInfoRepository extends JpaRepository<TravelInfo, Integer> {
 	
 	@Query(value = "SELECT * FROM trip.travel_info WHERE ID LIKE :id", nativeQuery = true)
-	TravelInfo findbyID(@Param("id") Integer Id);
+	TravelInfo findByID(@Param("id") Integer Id);
 	
 }
