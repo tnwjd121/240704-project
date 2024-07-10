@@ -4,12 +4,20 @@ import "../css/header.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
-export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
+export default function Header({
+  ID,
+  LoginOrNot,
+  setID,
+  setLoginOrNot,
+  Cookies,
+}) {
   const navigate = useNavigate();
   const LogOut = () => {
     setID("");
     setLoginOrNot(false);
     navigate("/");
+    Cookies.remove("ID");
+    Cookies.remove("LoginOrNot");
   };
 
   const [menuStates, setMenuStates] = useState({
@@ -95,7 +103,7 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                 <ul id="side-nav">
                   <li>
                     <Link to="/searchtrdomesticcategory" className="link-style">
-                      국내 여행 카테고리 
+                      국내 여행 카테고리
                     </Link>
                   </li>
                   <li>

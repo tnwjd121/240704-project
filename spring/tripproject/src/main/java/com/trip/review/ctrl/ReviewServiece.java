@@ -44,5 +44,9 @@ public class ReviewServiece {
 		return true;
 	}
 	
+	public List<Review> RankingReviewCount(Integer travelInfo_ID) {
+		return rRepo.rankByTIDsRCount(travelInfo_ID);
+	}
+	
 
 }

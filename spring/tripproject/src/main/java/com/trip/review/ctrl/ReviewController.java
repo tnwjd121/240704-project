@@ -56,6 +56,15 @@ public class ReviewController {
     public Boolean User(@RequestBody Review review) {
     	return rServe.reviewUpdate(review);
     }
+	
+	
+	
+	
+	//리뷰순 랭킹 조회
+	@GetMapping("/Ranking/")
+	public List<Review> RankingReviewCount(@PathVariable("Id") String Id) {
+    	return rServe.findReviewByUserId(Id);
+    }
 
 	
 	
