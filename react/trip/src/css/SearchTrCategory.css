@@ -40,6 +40,7 @@
   border-collapse: collapse;
   margin-top: 20px;
   border: 3px solid #006400; 
+  table-layout: fixed; /* 테이블 레이아웃 고정 */
 }
 
 .search-results th,
@@ -59,6 +60,29 @@
 .search-results td {
   background-color: #ffffff; 
   color: #000000; 
+}
+
+.search-results td.path {
+  padding: 0;
+  height: 50px; /* 셀 높이 조정 */
+  width: 120px; /* 셀 너비 조정 */
+}
+
+.search-results button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 1px solid green;
+  background-color: white;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+.search-results button:hover {
+  background-color: #f0f0f0;
 }
 
 .no-results {
