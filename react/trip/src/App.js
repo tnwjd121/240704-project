@@ -17,6 +17,7 @@ import Festival from './pages/Festival';
 import FestivalReg from './pages/FestivalReg';
 import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
 import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
+import WayDetail from './pages/WayDetail';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/festivalReg" element={<FestivalReg />}/>
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
           <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/way-detail/:id" element={<WayDetail />} />
         </Routes>
         <Footer />
       </>
