@@ -1,65 +1,83 @@
 import { useEffect, useState } from "react";
+import '../css/writeReview.css'
+import StarRating from "./StarRating";
+import axios from "axios";
+import { SERVER_URL } from "./Api";
+import '../css/writeReview.css'
+import ShowReview from "./ShowReview";
 
 export default function WriteReview({ travelInfo_ID, user_ID }) {
-  const [review, setReview] = useState({});
-  const [score, setScore] = useState("");
-  const [contents, setContents] = useState("");
+  const [reviewData, setReviewData] = useState({
+    travel_info_id : travelInfo_ID,
+    user_id : user_ID,
+    score : "",
+    contents :""
+  })
 
   useEffect(() => {
-    const api = `http://localhost:8080/Review/travelinfo=${travelInfo_ID}&userId=${user_ID}`;
-    fetch(api)
-      .then((response) => response.json())
-      .then((data) => {
-        setReview(data);
-        setScore(data.score || "");
-        setContents(data.contents || "");
-      });
+    setReviewData(prev => ({
+      ...prev,
+    }));
   }, [travelInfo_ID, user_ID]);
 
-  const reviewUpload = (event) => {
-    event.preventDefault();
-    const api = `http://localhost:8080/Review/Write`;
-    const writeReviewBody = {
-      travelInfo_ID: travelInfo_ID,
-      user_ID: user_ID,
-      score: score,
-      contents: contents,
-    };
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(writeReviewBody),
-    })
-      .then((response) => response.json())
-      .then((data) => setReview(data));
-  };
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+    setReviewData((prev) =>({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const reviewUpload = async (e) => {
+
+    const reviewdb = await axios.get(`${SERVER_URL}/Review/travelinfo=${travelInfo_ID}`)
+    const reviews =reviewdb.data
+    const idCheck = reviews.filter(review => review.user.id === user_ID)
+    if(idCheck.length>0){
+      alert("이미 등록된 리뷰가 있습니다.")
+      return
+    }
+
+    if(user_ID==undefined){
+      alert("로그인 후 리뷰 등록 부탁드립니다.")
+      return
+    }
+
+    if(reviewData.score==''){
+      reviewData.score = 0
+    }
+
+    try {
+      const response = await axios.post(`${SERVER_URL}/Review/Write`, reviewData)
+      
+      window.location.reload();
+    } catch (error) {
+      console.error("리뷰 등록 에러 발생: ", error);
+    }
+  }
 
   return (
-    <div className="reviewbox" key={review.id}>
-      <form onSubmit={reviewUpload}>
-        <div>여행지 : {review.travelInfo_ID}</div>
-        <div>작성자 : {review.user_ID}</div>
-        <div>
-          점수 :
-          <input
-            type="number"
-            min={0}
-            max={5}
-            onChange={(e) => setScore(e.target.value)}
-            value={score}
-          ></input>
+    <>
+      <div className="reviewbox">
+        <div id="review-top">
+          <div id="user-name">id: {user_ID}</div>
+          <div>
+            <StarRating 
+            score={reviewData.score} 
+            onScoreChange={(value)=> handleChange({ target : {name: 'score', value}})}/>
+          </div>
         </div>
-        <div>
-          내용 :
-          <textarea
-            onChange={(e) => setContents(e.target.value)}
-            value={contents}
-          ></textarea>
-        </div>
-        <button type="submit">리뷰 작성</button>
-      </form>
-    </div>
+          <div>
+            <textarea
+              id="review-text"
+              name = "contents"
+              onChange={handleChange}
+              value={reviewData.contents}
+            ></textarea>
+          </div>
+          <button id="review-button" onClick={reviewUpload}>리뷰 작성</button>
+      </div>
+      <ShowReview travelInfo_ID={travelInfo_ID}/>
+    </>
   );
 }

@@ -4,9 +4,9 @@ import { SERVER_URL } from '../components/Api';
 import { useParams } from 'react-router-dom';
 import '../css/tripDetail.css'
 import Kakao from '../components/Kakao'
+import WriteReview from '../components/WriteReview'
 
-
-export default function TripDetail() {
+export default function TripDetail({User_ID}) {
   const [trip, setTrip] = useState(null)
   const { id } = useParams();
 
@@ -18,6 +18,8 @@ export default function TripDetail() {
     try {
       const response = await axios.get(`${SERVER_URL}/api/travelInfoes/${id}`)
       setTrip(response.data)
+      console.log(User_ID)
+      console.log(id)
     } catch (error) {
       console.error("상세페이지 에러: ", error);
     }
@@ -30,6 +32,7 @@ export default function TripDetail() {
       </div>
     )
   }
+
   
   return (
     <div className='body'>
@@ -50,6 +53,7 @@ export default function TripDetail() {
         </div>
         <p id='map-title'>상세 지도</p>
         <Kakao address={trip.address}/>
+        <WriteReview user_ID={User_ID} travelInfo_ID={id}/>
       </div>
     </div>
   )

@@ -37,3 +37,17 @@
 #map{
   margin: 0 auto;
 }
+
+.reviewbox{
+  width: 50rem;
+  margin-top: 1rem;
+  margin: 0 auto;
+}
+
+#trip-detail{
+  margin-bottom:4rem;
+}
+#review-list-body{
+  width: 50rem;
+  margin: 0 auto;
+}
