@@ -48,6 +48,11 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/festivalReg" className="link-style">
+                      축제 등록
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/test" className="link-style">
                       사이드 메뉴
                     </Link>
@@ -71,8 +76,31 @@ export default function Header({ ID, LoginOrNot, setID, setLoginOrNot }) {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/test" className="link-style">
+                    <Link to="/festival" className="link-style">
                       축제정보
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li
+              onMouseEnter={() => toggleMenu("menu3")}
+              onMouseLeave={() => toggleMenu("menu3")}
+            >
+              <span>
+                검색
+                <FaChevronDown className="react-icon" />
+              </span>
+              {menuStates.menu3 && (
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/searchtrdomesticcategory" className="link-style">
+                      국내 여행 카테고리 
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/searchtroverseascategory" className="link-style">
+                      해외 여행 카테고리
                     </Link>
                   </li>
                 </ul>

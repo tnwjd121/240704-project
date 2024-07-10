@@ -94,10 +94,12 @@ export default function JoinBox() {
 
   return (
     <div className="JoinBoxDiv">
+      <h2>회원가입</h2>
       <form onSubmit={joinNewUser}>
         <table>
           <tr>
-            <td>
+            <td className="label">아이디</td>
+            <td colSpan={2}>
               <input
                 type="text"
                 placeholder="아이디"
@@ -117,7 +119,8 @@ export default function JoinBox() {
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td className="label">비밀번호</td>
+            <td colspan="3">
               <input
                 type="password"
                 placeholder="비밀번호"
@@ -127,7 +130,8 @@ export default function JoinBox() {
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td className="label">비밀번호 확인</td>
+            <td colspan="3">
               <input
                 type="password"
                 placeholder="비밀번호 확인"
@@ -137,7 +141,8 @@ export default function JoinBox() {
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td className="label">이메일</td>
+            <td colspan="3">
               <input
                 type="email"
                 placeholder="이메일"
@@ -147,6 +152,7 @@ export default function JoinBox() {
             </td>
           </tr>
           <tr>
+            <td className="label">이름</td>
             <td>
               <input
                 type="text"
@@ -155,6 +161,7 @@ export default function JoinBox() {
                 onChange={(e) => setJoinName(e.target.value)}
               />
             </td>
+            <td className="label">성별</td>
             <td>
               <button type="button" onClick={toggleGender}>
                 {joinGender}
@@ -162,17 +169,18 @@ export default function JoinBox() {
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td className="label">나이</td>
+            <td colspan="3">
               <input
                 type="number"
                 placeholder="나이"
                 value={joinAge}
                 onChange={(e) => setJoinAge(Number(e.target.value))}
               />
-              <input type="submit" value="가입하기" />
             </td>
           </tr>
         </table>
+        <input type="submit" value="가입하기" />
       </form>
       {showPopup && (
         <LoginFail message={popupMessage} onClose={() => setShowPopup(false)} />

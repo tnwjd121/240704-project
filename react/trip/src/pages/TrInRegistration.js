@@ -53,6 +53,10 @@ export default function TrInRegistration() {
       <div className="registration-form-container">
         <form onSubmit={handleSubmit} className="registration-form">
           <label>
+            장소명
+            <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
+          </label>
+          <label>
             나라
             <input type="text" name="country" value={formData.country} onChange={handleChange} />
           </label>
@@ -70,10 +74,6 @@ export default function TrInRegistration() {
               <option value="공연(전시)">공연(전시)</option>
               <option value="음식점(카페)">음식점(카페)</option>
             </select>
-          </label>
-          <label>
-            장소명
-            <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
           </label>
           <label>
             주소
