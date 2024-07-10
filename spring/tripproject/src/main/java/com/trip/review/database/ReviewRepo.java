@@ -16,7 +16,7 @@ public interface ReviewRepo extends JpaRepository<Review, Long> {
     List<Review> findByUserId(@Param("user_ID") String userId);
     
     @Query(value = "SELECT * FROM review WHERE travel_Info_ID = :travelInfo_ID AND user_ID = :user_ID", nativeQuery = true)
-    Review findByTIDAndUId(@Param("travelInfo_ID") Integer travel_InfoId, @Param("user_ID") String userId);
+    Review findByTIDAndUId(@Param("travelInfo_ID") Integer travelInfoId, @Param("user_ID") String userId);
     
     @Query(value = "SELECT travel_info_id, AVG(score) AS avg_score FROM trip.review GROUP BY travel_info_id;", nativeQuery = true)
     Review rankByRScore();
