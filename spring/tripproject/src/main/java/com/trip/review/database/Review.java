@@ -22,18 +22,18 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 public class Review {
-	
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "travelInfo_ID")
-    private Integer travelInfo_ID;
+    @JoinColumn(name = "travel_Info_ID")
+    private TravelInfo travelInfo;
     
     @ManyToOne
     @JoinColumn(name = "user_ID")
-    private String user_ID;
+    private User user;
     
     private Integer score;
     
