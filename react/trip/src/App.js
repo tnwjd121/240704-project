@@ -7,21 +7,34 @@ import Login from "./pages/Login";
 import Test from "./pages/Test";
 import Join from "./pages/Join";
 import User from "./pages/User";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
-import TrInRegistration from './pages/TrInRegistration';
+import TrInRegistration from "./pages/TrInRegistration";
 import TripDetail from "./pages/TripDetail";
-import Festival from './pages/Festival';
-import FestivalReg from './pages/FestivalReg';
-import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
-import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
-
+import Festival from "./pages/Festival";
+import FestivalReg from "./pages/FestivalReg";
+import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
+import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
+import Cookies from "js-cookie";
 
 function App() {
   const [ID, setID] = useState("");
   const [LoginOrNot, setLoginOrNot] = useState(false);
+
+  useEffect(() => {
+    const storedID = Cookies.get("ID");
+    const storedLoginOrNot = Cookies.get("LoginOrNot");
+
+    if (storedID) {
+      setID(storedID);
+    }
+    if (storedLoginOrNot) {
+      setLoginOrNot(storedLoginOrNot === "true");
+    }
+  }, []);
+
   return (
     <Router>
       <>
@@ -30,12 +43,19 @@ function App() {
           setID={setID}
           LoginOrNot={LoginOrNot}
           setLoginOrNot={setLoginOrNot}
+          Cookies={Cookies}
         />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route
             path="/login"
-            element={<Login setID={setID} setLoginOrNot={setLoginOrNot} />}
+            element={
+              <Login
+                setID={setID}
+                setLoginOrNot={setLoginOrNot}
+                Cookies={Cookies}
+              />
+            }
           />
           <Route path="/join" element={<Join />} />
           <Route path="/test" element={<Test />} />
@@ -46,12 +66,18 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
-          <Route path="/trinregistration" element={<TrInRegistration/>}/>
-          <Route path="/tripDetail/:id" element={<TripDetail/>}></Route>
-          <Route path="/festival" element={<Festival />}/>
-          <Route path="/festivalReg" element={<FestivalReg />}/>
-          <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
-          <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/trinregistration" element={<TrInRegistration />} />
+          <Route path="/tripDetail/:id" element={<TripDetail />}></Route>
+          <Route path="/festival" element={<Festival />} />
+          <Route path="/festivalReg" element={<FestivalReg />} />
+          <Route
+            path="/searchtrdomesticcategory"
+            element={<SearchTrDomesticCategory />}
+          />
+          <Route
+            path="/searchtroverseascategory"
+            element={<SearchTrOverseasCategory />}
+          />
         </Routes>
         <Footer />
       </>

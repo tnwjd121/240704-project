@@ -17,4 +17,10 @@ public interface ReviewRepo extends JpaRepository<Review, Long> {
     
     @Query(value = "SELECT * FROM review WHERE travelInfo_ID = :travelInfo_ID AND user_ID = :user_ID", nativeQuery = true)
     Review findByTIDAndUId(@Param("travelInfo_ID") Integer travelInfoId, @Param("user_ID") String userId);
+    
+    @Query(value = "SELECT AVG(SCORE) FROM review WHERE travelInfo_ID = :travelInfo_ID", nativeQuery = true)
+    Review rankByTIDsScore(@Param("travelInfo_ID") Integer travelInfoId);
+    
+    @Query(value = "SELECT COUNT(*) FROM review WHERE travelInfo_ID = :travelInfo_ID", nativeQuery = true)
+    Review rankByTIDsRCount(@Param("travelInfo_ID") Integer travelInfoId);
 }
