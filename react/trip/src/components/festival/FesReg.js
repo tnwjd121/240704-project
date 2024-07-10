@@ -94,22 +94,34 @@ function FesReg() {
             </select>
           </label>
           {(festival.country==="국내") && (
-            <label>
-              지역
-              <select type="text" name="region" value={festival.region} onChange={handleChange}>
-              {kRegion.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))} 
-              </select>
-            </label>
+            <>
+              <label>
+                국가명
+              <input type="text" name="countryName" value={festival.countryName="대한민국"} onChange={handleChange} readOnly/>
+              </label>
+              <label>
+                지역
+                <select type="text" name="region" value={festival.region} onChange={handleChange}>
+                  {kRegion.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))} 
+                </select>
+              </label>
+            </>
           )}
           {festival.country==="해외" && (
-            <label>
-              국가명
-              <input type="text" name="countryName" value={festival.countryName} onChange={handleChange} />
-            </label>
+            <>
+              <label>
+                국가명
+                <input type="text" name="countryName" value={festival.countryName} onChange={handleChange}/>
+              </label>
+              <label>
+                지역
+                <input type="text" name="region" value={festival.region} onChange={handleChange} />
+              </label>
+            </>
           )}
           <label>
             입장료
