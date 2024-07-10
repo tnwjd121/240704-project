@@ -29,7 +29,7 @@ public class Festival {
 	private int fesId;
 	
 	@Column(nullable = false)
-	private String country, region, fesName, address, imageUrl;
+	private String country, countryName ,region, fesName, address, imageUrl;
 	
 	private String detail;
 	
