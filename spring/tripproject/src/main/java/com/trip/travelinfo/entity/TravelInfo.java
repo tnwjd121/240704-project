@@ -33,10 +33,10 @@ public class TravelInfo {
 
     @Column(nullable = false, length = 100)
     private String address;
-
+    
     @Column(nullable = false, length = 200)
     private String description;
-
+    
     @Column(length = 200)
     private String photoUrl; // 파일 경로 또는 URL 저장
     
