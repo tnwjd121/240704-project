@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SERVER_URL } from '../components/Api';
 import { useParams } from 'react-router-dom';
 import '../css/tripDetail.css'
-import Kakao from '../components/Kakao';
+import Kakao from '../components/Kakao'
 
 
 export default function TripDetail() {
@@ -22,6 +22,7 @@ export default function TripDetail() {
       console.error("상세페이지 에러: ", error);
     }
   }
+  
   if(!trip) {
     return (
       <div className='body'>
@@ -29,9 +30,7 @@ export default function TripDetail() {
       </div>
     )
   }
-
-
-
+  
   return (
     <div className='body'>
       <div id='trip-detail'>
@@ -49,7 +48,8 @@ export default function TripDetail() {
             <p><strong>주소:</strong> {trip.address}</p>
           </div>
         </div>
-        <Kakao/>
+        <p id='map-title'>상세 지도</p>
+        <Kakao address={trip.address}/>
       </div>
     </div>
   )
