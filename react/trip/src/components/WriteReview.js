@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import '../css/writeReview.css'
+import StarRating from "./StarRating";
 
 export default function WriteReview({ travelInfo_ID, user_ID }) {
   const [review, setReview] = useState({});
@@ -36,20 +38,17 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
       .then((data) => setReview(data));
   };
 
+  const handleScoreChange = (value) => {
+    setScore(value); // 별점 값 변경
+  };
+
   return (
     <div className="reviewbox" key={review.id}>
       <form onSubmit={reviewUpload}>
-        <div>여행지 : {review.travelInfo_ID}</div>
         <div>작성자 : {review.user_ID}</div>
         <div>
           점수 :
-          <input
-            type="number"
-            min={0}
-            max={5}
-            onChange={(e) => setScore(e.target.value)}
-            value={score}
-          ></input>
+          <StarRating score={score} onScoreChange={handleScoreChange}/>
         </div>
         <div>
           내용 :

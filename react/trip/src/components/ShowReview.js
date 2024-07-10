@@ -16,7 +16,8 @@ export default function ShowReview({ id }) {
     if (api !== "") {
       fetch(api)
         .then((response) => response.json())
-        .then((data) => setReview(data));
+        .then((data) => setReview(data))
+        .catch((error) => console.error("리뷰 에러: ", error));
     }
   }, [api]);
 

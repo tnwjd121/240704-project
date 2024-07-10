@@ -47,7 +47,7 @@ function App() {
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
           <Route path="/trinregistration" element={<TrInRegistration/>}/>
-          <Route path="/tripDetail/:id" element={<TripDetail/>}></Route>
+          <Route path="/tripDetail/:id"  element={<TripDetail User_ID={ID}/>}></Route>
           <Route path="/festival" element={<Festival />}/>
           <Route path="/festivalReg" element={<FestivalReg />}/>
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
