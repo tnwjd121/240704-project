@@ -7,10 +7,10 @@ import axios from 'axios';
 
 export default function TrInRegistration() {
   const [formData, setFormData] = useState({
+    placeName: '',
     country: '',
     region: '',
     category: '자연명소',
-    placeName: '',
     address: '',
     description: '',
     photoUrl: ''
@@ -25,6 +25,32 @@ export default function TrInRegistration() {
       [name]: value
     }));
   };
+
+  const addressSubmit = () =>{
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          let addr = ''; // 주소 변수
+
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+              addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+              addr = data.jibunAddress;
+          }
+
+          setFormData(prevState => ({
+            ...prevState,
+            address: addr
+          }))
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById("address").value = addr;
+      }
+  }).open();
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -57,7 +83,7 @@ export default function TrInRegistration() {
             <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
           </label>
           <label>
-            나라
+            국가명
             <input type="text" name="country" value={formData.country} onChange={handleChange} />
           </label>
           <label>
@@ -77,7 +103,8 @@ export default function TrInRegistration() {
           </label>
           <label>
             주소
-            <input type="text" name="address" value={formData.address} onChange={handleChange} />
+            <input type="text" name="address" value={formData.address} onChange={handleChange} id='address'/>
+            <input value={"주소검색"} type='button' onClick={addressSubmit}/>
           </label>
           <label>
             상세

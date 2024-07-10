@@ -18,6 +18,8 @@ import FestivalReg from "./pages/FestivalReg";
 import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
+import FesDetailKorea from './pages/FesDetailKorea'
+
 
 function App() {
   const [ID, setID] = useState("");
@@ -70,6 +72,7 @@ function App() {
           <Route path="/tripDetail/:id"  element={<TripDetail User_ID={Cookies.get("ID")}/>}></Route>
           <Route path="/festival" element={<Festival />}/>
           <Route path="/festivalReg" element={<FestivalReg />}/>
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
           <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
         </Routes>
