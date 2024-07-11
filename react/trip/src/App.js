@@ -13,21 +13,14 @@ import Triplist from "./pages/Triplist";
 import TripModal from "./pages/TripModal";
 import TrInRegistration from "./pages/TrInRegistration";
 import TripDetail from "./pages/TripDetail";
-<<<<<<< HEAD
 import Festival from "./pages/Festival";
 import FestivalReg from "./pages/FestivalReg";
 import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
-=======
-import Festival from './pages/Festival';
-import FestivalReg from './pages/FestivalReg';
-import FesDetailKorea from './pages/FesDetailKorea'
-import SearchTrDomesticCategory from './pages/SearchTrDomesticCategory';
-import SearchTrOverseasCategory from './pages/SearchTrOverseasCategory';
 import WayDetail from './pages/WayDetail';
 
->>>>>>> origin/kkt
+
 
 function App() {
   const [ID, setID] = useState("");
