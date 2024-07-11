@@ -19,6 +19,7 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from "./pages/FesDetailKorea";
+import ShowRank from "./pages/ShowRank";
 
 function App() {
   const [ID, setID] = useState("");
@@ -83,6 +84,7 @@ function App() {
             path="/searchtroverseascategory"
             element={<SearchTrOverseasCategory />}
           />
+          <Route path="/ranking" element={<ShowRank />} />
         </Routes>
         <Footer />
       </>
