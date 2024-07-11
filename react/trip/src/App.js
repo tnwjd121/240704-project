@@ -19,6 +19,7 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
+import WayDetail from './pages/WayDetail';
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
           <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
           <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
           <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/way-detail/:id" element={<WayDetail />} />
         </Routes>
         <Footer />
       </>

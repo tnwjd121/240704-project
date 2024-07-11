@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/SearchTrCategory.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const SearchTrDomesticCategory = () => {
   const [category, setCategory] = useState('전체');
@@ -11,7 +12,6 @@ const SearchTrDomesticCategory = () => {
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
-    // 모든 대한민국 데이터를 가져옴
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/travel-info/all');
@@ -67,6 +67,7 @@ const SearchTrDomesticCategory = () => {
                 <th>지역</th>
                 <th>장소 이름</th>
                 <th>별점</th>
+                <th>길찾기</th>
               </tr>
             </thead>
             <tbody>
@@ -77,6 +78,13 @@ const SearchTrDomesticCategory = () => {
                   <td>{result.region}</td>
                   <td>{result.placeName}</td>
                   <td></td>
+                  <td>
+                    <Link to={`/way-detail/${result.id}`}>
+                      <button className="path">
+                        길찾기 <FontAwesomeIcon icon={faLocationDot} />
+                      </button>
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -92,3 +100,4 @@ const SearchTrDomesticCategory = () => {
 };
 
 export default SearchTrDomesticCategory;
+
