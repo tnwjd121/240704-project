@@ -41,23 +41,36 @@ public class ReviewController {
     
     //리뷰 작성
     @PostMapping("/Review/Write")
-    public Boolean UserJoin(@RequestBody Review review) {
-    	return rServe.reviewWrite(review);
+    public void UserJoin(@RequestBody ReviewDto review) {
+    	rServe.reviewWrite(review);
     }
     
     //리뷰 삭제
     @DeleteMapping("/Review/Delete/id={Id}")
-    public Boolean UserUnsub(@PathVariable("Id") Long Id) {
-    	return rServe.reviewDelete(Id);
+    public void UserUnsub(@PathVariable("Id") Long Id) {
+    	rServe.reviewDelete(Id);
     }
     
     //리뷰 수정
 	@PutMapping("/Review/Update")
-    public Boolean User(@RequestBody Review review) {
-    	return rServe.reviewUpdate(review);
+    public void User(@RequestBody ReviewDto review) {
+    	rServe.reviewUpdate(review);
+    }
+	
+	
+	
+	
+	//리뷰순 랭킹 조회
+	@GetMapping("/Ranking/ReviewCount")
+	public List<CountRankDto> RankingReviewCount() {
+    	return rServe.RankingReviewCount();
     }
 
-	
+	//평점순 랭킹 조회
+	@GetMapping("/Ranking/ReviewScore")
+	public List<ScoreRankDto> RankingReviewScore() {
+    	return rServe.RankingReviewScore();
+    }
 	
 	
 	

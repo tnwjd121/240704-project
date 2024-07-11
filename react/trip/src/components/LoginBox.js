@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import LoginFail from "./LoginFail";
 
-export default function LoginBox({ setID, setLoginOrNot }) {
+export default function LoginBox({ setID, setLoginOrNot, Cookies }) {
   const [LoginID, setLoginID] = useState("");
   const [LoginPW, setLoginPW] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -23,6 +23,8 @@ export default function LoginBox({ setID, setLoginOrNot }) {
           console.log("로그인 성공");
           setID(LoginID);
           setLoginOrNot(true);
+          Cookies.set("ID", LoginID, { expires: 7 });
+          Cookies.set("LoginOrNot", true, { expires: 7 });
           navigate("/");
         } else {
           console.log("로그인 실패");

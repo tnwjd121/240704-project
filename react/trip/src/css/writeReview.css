@@ -1,0 +1,39 @@
+#review-top{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border: 3px solid rgb(63, 207, 63);
+  border-radius: 1rem;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0px 1rem;
+  margin-top: 1rem;
+}
+#user-name{
+  margin-right: 1rem;
+}
+#review-text{
+  resize: none;
+  width: 49rem;
+  height: 8rem;
+  border: 3px solid rgb(63, 207, 63);
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  outline: none;
+}
+
+#review-button {
+  width: 49rem;
+  background-color: rgb(63, 207, 63);
+  color: white;
+  border: 1px solid rgb(63, 207, 63);
+  border-radius: 0.5rem;
+  height: 1.5rem;
+  padding: 2px;
+}
+
+#review-button:hover {
+  border: 1px solid gray;
+  background-color: gray;
+}
+
