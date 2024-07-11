@@ -8,6 +8,7 @@ export default function ShowRanking() {
   const [sortedRanking, setSortedRanking] = useState([]);
   const [sortOption, setSortOption] = useState("리뷰 수");
   const [isLoading, setIsLoading] = useState(true);
+  const [filterRegion, setFilterRegion] = useState("국내"); // 기본값으로 국내 설정
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +57,10 @@ export default function ShowRanking() {
     setSortOption(e.target.value);
   };
 
+  const handleFilterRegion = (e) => {
+    setFilterRegion(e.target.value);
+  };
+
   const getTravelInfoById = (id) => {
     return travelInfo.find((travelInfo) => travelInfo.id == id) || {};
   };
@@ -64,10 +69,28 @@ export default function ShowRanking() {
     return <div>Loading...</div>;
   }
 
+  // 국가 필터링된 리스트
+  const filteredRanking = sortedRanking.filter((item) => {
+    const travelInfoItem = getTravelInfoById(item.travelInfoId);
+
+    // travelInfoItem의 국가가 "국내"인지 확인
+    if (filterRegion === "국내") {
+      return travelInfoItem.country === "대한민국";
+    } else {
+      // "해외"인 경우
+      return travelInfoItem.country !== "대한민국";
+    }
+  });
+
   return (
     <div className="body">
       <h1>여행지 랭킹</h1>
       <div>
+        <label>국가 : </label>
+        <select value={filterRegion} onChange={handleFilterRegion}>
+          <option value="국내">국내</option>
+          <option value="해외">해외</option>
+        </select>
         <label>정렬 : </label>
         <select value={sortOption} onChange={handleSortChange}>
           <option value="리뷰 수">리뷰 수</option>
@@ -75,7 +98,7 @@ export default function ShowRanking() {
         </select>
       </div>
       <ul>
-        {sortedRanking.map((item) => {
+        {filteredRanking.map((item) => {
           const travelInfoItem = getTravelInfoById(item.travelInfoId);
           return (
             <div key={item.travelInfoId} className="category-item">
