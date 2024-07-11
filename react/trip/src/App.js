@@ -22,6 +22,9 @@ import ShowRank from './components/ShowRanking'
 import WayDetail from './pages/WayDetail'
 import FestivalRanking from "./pages/FestivalRanking";
 
+import ShowRank from './pages/ShowRank';
+import WayDetail from './pages/WayDetail';
+
 function App() {
   const [ID, setID] = useState("");
   const [LoginOrNot, setLoginOrNot] = useState(false);
