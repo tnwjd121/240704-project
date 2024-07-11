@@ -18,6 +18,10 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
+import ShowRank from './components/ShowRanking'
+import WayDetail from './pages/WayDetail'
+import FestivalRanking from "./pages/FestivalRanking";
+
 function App() {
   const [ID, setID] = useState("");
   const [LoginOrNot, setLoginOrNot] = useState(false);
@@ -81,6 +85,7 @@ function App() {
           />
           <Route path="/ranking" element={<ShowRank />} />
           <Route path="/way-detail/:id" element={<WayDetail />} />
+          <Route path="/fesranking" element={<FestivalRanking />} />
         </Routes>
         <Footer />
       </>
