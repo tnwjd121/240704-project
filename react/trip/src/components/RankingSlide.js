@@ -9,7 +9,7 @@ import { SERVER_URL } from "./Api";
 import "../css/RankingSlide.css";
 
 const RankingSlide = () => {
-  const [filterRegion, setFilterRegion] = useState("해외");
+  const [filterRegion, setFilterRegion] = useState("국내");
   const [travelInfo, setTravelInfo] = useState([]);
   const [ranking, setRanking] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -142,11 +142,15 @@ const RankingSlide = () => {
 
   return (
     <div className="RankingSlide">
-      <label>국가 : </label>
-      <select value={filterRegion} onChange={handleFilterRegion}>
-        <option value="국내">국내</option>
-        <option value="해외">해외</option>
-      </select>
+      <div id="slide-div">
+        <label>
+          <span>국내/해외 : </span>
+          <select value={filterRegion} onChange={handleFilterRegion}>
+            <option value="국내">국내</option>
+            <option value="해외">해외</option>
+          </select>
+        </label>
+      </div>
       <div
         ref={slideRef}
         className="ImgContainer"

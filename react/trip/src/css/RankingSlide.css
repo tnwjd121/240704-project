@@ -4,13 +4,23 @@
   overflow: hidden;
 }
 
+#slide-div{
+  float: left;
+  margin-bottom: 0.5rem;
+}
+
+#slide-div select{
+  border: 1px solid;
+  border-radius: 0.3rem;
+}
+
 .RankingSlide .ImgContainer {
   display: flex;
 }
 
 .RankingSlide .ImgBox {
   width: 800px;
-  height: 600px;
+  height: 700px;
 }
 
 .RankingSlide .ImgBox img {
@@ -23,7 +33,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0);
   border: none;
   cursor: pointer;
 }
