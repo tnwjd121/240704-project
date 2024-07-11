@@ -18,9 +18,10 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from "./pages/FesDetailKorea";
+import ShowRank from "./components/ShowRanking";
 import WayDetail from "./pages/WayDetail";
+import AirportDetail from "./pages/AirportDetail";
 import FestivalRanking from "./pages/FestivalRanking";
-import ShowRank from "./pages/ShowRank";
 
 function App() {
   const [ID, setID] = useState("");
@@ -85,6 +86,7 @@ function App() {
           />
           <Route path="/ranking" element={<ShowRank />} />
           <Route path="/way-detail/:id" element={<WayDetail />} />
+          <Route path="/airportdetail" element={<AirportDetail />} />
           <Route path="/fesranking" element={<FestivalRanking />} />
         </Routes>
         <Footer />

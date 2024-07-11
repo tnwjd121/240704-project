@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/SearchTrCategory.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const SearchTrOverseasCategory = () => {
   const [category, setCategory] = useState('전체');
@@ -67,6 +68,7 @@ const SearchTrOverseasCategory = () => {
                 <th>지역</th>
                 <th>장소 이름</th>
                 <th>별점</th>
+                <th>공항편 정보</th>
               </tr>
             </thead>
             <tbody>
@@ -77,6 +79,13 @@ const SearchTrOverseasCategory = () => {
                   <td>{result.region}</td>
                   <td>{result.placeName}</td>
                   <td></td>
+                  <td>
+                    <Link to={`/airportdetail`}>
+                      <button className="path">
+                        공항편 정보 <FontAwesomeIcon icon={faLocationDot} />
+                      </button>
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
