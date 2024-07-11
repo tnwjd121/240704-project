@@ -77,7 +77,6 @@ export default function WriteReview({ travelInfo_ID, user_ID }) {
           </div>
           <button id="review-button" onClick={reviewUpload}>리뷰 작성</button>
       </div>
-      <ShowReview travelInfo_ID={travelInfo_ID}/>
     </>
   );
 }

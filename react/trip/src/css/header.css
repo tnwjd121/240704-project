@@ -82,14 +82,14 @@ color: green
 #side-nav{
   position: absolute;
   top: 100%;
-  background-color: white;
   z-index: 1001;
   text-align: center;
   list-style: none;
   padding-left: 0px;
-border-radius: 10px;
+  border-radius: 10px;
 }
 #side-nav li {
+  background-color: white;
   border: 1px solid  rgb(63, 207, 63);
   border-radius: 20px;
   margin-bottom: 5px;

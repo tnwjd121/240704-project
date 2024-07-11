@@ -19,8 +19,6 @@ export default function TripDetail({ User_ID }) {
     try {
       const response = await axios.get(`${SERVER_URL}/api/travelInfoes/${id}`);
       setTrip(response.data);
-      console.log(User_ID);
-      console.log(id);
     } catch (error) {
       console.error("상세페이지 에러: ", error);
     }
