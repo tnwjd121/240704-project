@@ -56,6 +56,25 @@ function FesReg() {
     }
   };
 
+  const addressSubmit = () =>{
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+
+          let addr = '';
+          if (data.userSelectedType === 'R') { 
+              addr = data.roadAddress;
+          } else { 
+              addr = data.jibunAddress;
+          }
+          setFestival(prevState => ({
+            ...prevState,
+            address: addr
+          }))
+          document.getElementById("address").value = addr;
+      }
+  }).open();
+  }
+
   const kRegion=[
     {label:""},
     {value:"서울", label:"서울"},
@@ -87,7 +106,7 @@ function FesReg() {
             <input type='text' name="fesName" value={festival.fesName} onChange={handleChange} />
           </label>
           <label>
-            분류
+            국내/해외
             <select name="country" value={festival.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
@@ -129,7 +148,8 @@ function FesReg() {
           </label>
           <label>
             주소
-            <input type="text" name="address" value={festival.address} onChange={handleChange} />
+            <input type="text" name="address" value={festival.address} onChange={handleChange} id='address'/>
+            <input value={"주소검색"} type='button' onClick={addressSubmit}/>
           </label>
           <label>
             주최

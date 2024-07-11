@@ -94,7 +94,7 @@ export default function FesEdit({festival, fetchFestivals}) {
             <input type='text' id="fesName" value={updateFes.fesName} onChange={handleChange} />
           </label>
           <label>
-            <span>분류</span>
+            <span>국내/해외</span>
             <select id="country" value={updateFes.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
