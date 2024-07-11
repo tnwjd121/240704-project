@@ -39,7 +39,7 @@ export default function KFesDetail() {
           <img src={festival.imageUrl} alt={festival.fesName}></img>
           </div>
           <div id='trip-detail-text'>
-            <p><strong>축제명:</strong> {festival.fesName}</p>
+            <p><strong>축제 이름:</strong> {festival.fesName}</p>
             <p><strong>축제기간:</strong>{festival.startDate} ~ {festival.endDate}
             </p>
             <p><strong>요금:</strong> {festival.price}원</p>

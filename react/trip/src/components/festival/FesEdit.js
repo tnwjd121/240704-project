@@ -90,33 +90,45 @@ export default function FesEdit({festival, fetchFestivals}) {
       <div id='trip-modal' style={{display: open ? "block" : "none"}}>
         <h1 id='modal-title'>여행 정보 수정</h1>
           <label>
-            <span>축제이름</span>
+            <span>축제 이름</span>
             <input type='text' id="fesName" value={updateFes.fesName} onChange={handleChange} />
           </label>
           <label>
-            <span>나라</span>
+            <span>국내/해외</span>
             <select id="country" value={updateFes.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
             </select>
           </label>
           {(updateFes.country==="국내") && (
-            <label>
-              <span>지역</span>
-              <select type="text" id="region" value={updateFes.region} onChange={handleChange}>
-              {kRegion.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))} 
-              </select>
-            </label>
+            <>
+              <label>
+                <span>국가명</span>
+                <input type="text" name="countryName" value={updateFes.countryName="대한민국"} onChange={handleChange} readOnly/>
+              </label>
+              <label>
+                <span>지역</span>
+                <select type="text" id="region" value={updateFes.region} onChange={handleChange}>
+                {kRegion.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))} 
+                </select>
+              </label>
+            </>
           )}
           {updateFes.country==="해외" && (
-            <label>
-              <span>국가명</span>
-              <input type="text" id="countryName" value={updateFes.countryName} onChange={handleChange} />
-            </label>
+            <>            
+              <label>
+                <span>국가명</span>
+                <input type="text" id="countryName" value={updateFes.countryName} onChange={handleChange} />
+              </label>
+              <label>
+                <span>지역</span>
+                <input type="text" name="region" value={updateFes.region} onChange={handleChange} />
+              </label>
+            </>
           )}
           <label>
             <span>입장료</span>

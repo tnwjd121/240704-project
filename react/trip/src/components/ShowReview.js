@@ -9,12 +9,11 @@ export default function ShowReview({travelInfo_ID}) {
 
   useEffect(()=>{
     reviewlist()
-  },[reviews])
+  },[travelInfo_ID])
 
   const reviewlist = async () => {
     try {
       const response = await axios.get(`${SERVER_URL}/Review/travelinfo=${travelInfo_ID}`)
-      console.log(response.data)
       setReviews(response.data)
     } catch (error) {
       console.error("카테고리 목록 에러 발생: " , error);

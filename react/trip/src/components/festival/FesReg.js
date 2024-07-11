@@ -83,33 +83,45 @@ function FesReg() {
       <div className="registration-form-container">
         <form className="registration-form">
           <label>
-            축제이름
+            축제 이름
             <input type='text' name="fesName" value={festival.fesName} onChange={handleChange} />
           </label>
           <label>
-            나라
+            국내/해외
             <select name="country" value={festival.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
             </select>
           </label>
           {(festival.country==="국내") && (
-            <label>
-              지역
-              <select type="text" name="region" value={festival.region} onChange={handleChange}>
-              {kRegion.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))} 
-              </select>
-            </label>
+            <>
+              <label>
+                국가명
+                <input type="text" name="countryName" value={festival.countryName="대한민국"} onChange={handleChange} readOnly/>
+              </label>
+              <label>
+                지역
+                <select type="text" name="region" value={festival.region} onChange={handleChange}>
+                  {kRegion.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))} 
+                </select>
+              </label>
+            </>
           )}
           {festival.country==="해외" && (
-            <label>
-              국가명
-              <input type="text" name="countryName" value={festival.countryName} onChange={handleChange} />
-            </label>
+            <>
+              <label>
+                국가명
+                <input type="text" name="countryName" value={festival.countryName} onChange={handleChange}/>
+              </label>
+              <label>
+                지역
+                <input type="text" name="region" value={festival.region} onChange={handleChange} />
+              </label>
+            </>
           )}
           <label>
             입장료
