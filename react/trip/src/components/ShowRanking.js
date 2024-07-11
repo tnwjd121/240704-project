@@ -62,7 +62,7 @@ export default function ShowRanking() {
   };
 
   const getTravelInfoById = (id) => {
-    return travelInfo.find((travelInfo) => travelInfo.id == id) || {};
+    return travelInfo.find((travelInfo) => travelInfo.id === id) || {};
   };
 
   if (isLoading) {
@@ -101,21 +101,48 @@ export default function ShowRanking() {
         {filteredRanking.map((item) => {
           const travelInfoItem = getTravelInfoById(item.travelInfoId);
           return (
-            <div key={item.travelInfoId} className="category-item">
-              <div className="img-div">
-                <img
-                  src={travelInfoItem.photoUrl}
-                  alt={travelInfoItem.placeName}
-                />
-              </div>
-              <div className="category-info">
-                <p>지역: {travelInfoItem.region}</p>
-                <p>카테고리: {travelInfoItem.category}</p>
-                <p>장소명: {travelInfoItem.placeName}</p>
-                <p>
-                  {sortOption === "리뷰 수" ? item.reviewCount : item.avgScore}
-                </p>
-              </div>
+            <div key={item.travelInfoId} className="rankBox">
+              <a href={`http://localhost:3000/tripDetail/${item.travelInfoId}`}>
+                <table>
+                  <tr>
+                    <td rowspan="3">
+                      <div className="img-div">
+                        <img src={travelInfoItem.photoUrl} alt="" />
+                      </div>
+                    </td>
+                    <td colspan="2">
+                      <p>{travelInfoItem.placeName}</p>
+                    </td>
+                    <td>
+                      <p>
+                        {sortOption === "리뷰 수"
+                          ? "리뷰 수 : " + item.reviewCount
+                          : "평점 : " + item.avgScore}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        국가 : {travelInfoItem.country} 및 지역:{" "}
+                        {travelInfoItem.region}
+                      </p>
+                    </td>
+                    <td>
+                      <p>주소 : {travelInfoItem.address}</p>
+                    </td>
+                    <td>
+                      <p>카테고리: {travelInfoItem.category}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+                      <p>설명 : {travelInfoItem.description}</p>
+                    </td>
+                  </tr>
+                </table>
+              </a>
+              <div className="category-info"></div>
             </div>
           );
         })}
