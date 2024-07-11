@@ -23,6 +23,8 @@ export default function Header({
   const [menuStates, setMenuStates] = useState({
     menu1: false,
     menu2: false,
+    menu3: false,
+    menu4: false
   });
 
   const toggleMenu = (menu) => {
@@ -109,6 +111,29 @@ export default function Header({
                   <li>
                     <Link to="/searchtroverseascategory" className="link-style">
                       해외 여행 카테고리
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li
+              onMouseEnter={() => toggleMenu("menu4")}
+              onMouseLeave={() => toggleMenu("menu4")}
+            >
+              <span>
+                랭킹
+                <FaChevronDown className="react-icon" />
+              </span>
+              {menuStates.menu4 && (
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/" className="link-style">
+                      여행지 랭킹
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/fesranking" className="link-style">
+                      축제 랭킹
                     </Link>
                   </li>
                 </ul>
