@@ -6,6 +6,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { SERVER_URL } from "./Api";
+import "../css/RankingSlide.css";
 
 const RankingSlide = () => {
   const [filterRegion, setFilterRegion] = useState("해외");
@@ -22,14 +23,12 @@ const RankingSlide = () => {
           axios.get(`${SERVER_URL}/Review/Ranking`),
         ]);
 
-        // travelInfoResponse.data가 배열인지 확인
         if (Array.isArray(travelInfoResponse.data)) {
           setTravelInfo(travelInfoResponse.data);
         } else {
           console.error("travelInfo 응답이 배열이 아닙니다.");
         }
 
-        // rankingResponse.data가 배열인지 확인
         if (Array.isArray(rankingResponse.data)) {
           setRanking(rankingResponse.data);
         } else {
@@ -66,7 +65,7 @@ const RankingSlide = () => {
 
   const ShowImgArr = filteredRanking.slice(0, 3).map((item) => {
     const travelInfoItem = getTravelInfoById(item.travelInfoId);
-    return { img: travelInfoItem.photoUrl };
+    return travelInfoItem;
   });
 
   const BG_NUM = ShowImgArr.length;
@@ -140,13 +139,40 @@ const RankingSlide = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
   return (
-    <div className="Background">
+    <div className="RankingSlide">
       <label>국가 : </label>
       <select value={filterRegion} onChange={handleFilterRegion}>
         <option value="국내">국내</option>
         <option value="해외">해외</option>
       </select>
+      <div
+        ref={slideRef}
+        className="ImgContainer"
+        style={{
+          width: `${100 * SLIDE_NUM}vw`,
+          transition: "all 500ms ease-in-out",
+          transform: `translateX(-${(100 / SLIDE_NUM) * slideIndex}%)`,
+          display: "flex",
+        }}
+      >
+        {slideArr.map((item, index) => (
+          <div key={index} className="ImgBox" style={{ minWidth: "100vw" }}>
+            {item && item.photoUrl ? (
+              <a href={`http://localhost:3000/tripDetail/${item.id}`}>
+                <img
+                  src={item.photoUrl}
+                  alt={`Slide ${index}`}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </a>
+            ) : (
+              <div>이미지 없음</div>
+            )}
+          </div>
+        ))}
+      </div>
       <button
         className="SlideBtn Left"
         onMouseEnter={intervalHandler}
@@ -155,22 +181,6 @@ const RankingSlide = () => {
       >
         <FontAwesomeIcon icon={faChevronLeft} size="4x" />
       </button>
-      <div
-        ref={slideRef}
-        className="ImgContainer"
-        style={{
-          width: `${100 * SLIDE_NUM}vw`,
-          transition: "all 500ms ease-in-out",
-          transform: `translateX(-${(100 / SLIDE_NUM) * slideIndex}%)`,
-        }}
-      >
-        {slideArr.map((item, index) => (
-          <div key={index} className="ImgBox">
-            {console.log(item)}
-            <img src={item} alt="" />
-          </div>
-        ))}
-      </div>
       <button
         className="SlideBtn Right"
         onMouseEnter={intervalHandler}
