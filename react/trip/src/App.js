@@ -18,6 +18,9 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
+import ShowRank from './pages/ShowRank';
+import WayDetail from './pages/WayDetail';
+
 function App() {
   const [ID, setID] = useState("");
   const [LoginOrNot, setLoginOrNot] = useState(false);
