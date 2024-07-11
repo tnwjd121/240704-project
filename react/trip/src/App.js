@@ -20,7 +20,7 @@ import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
 import WayDetail from './pages/WayDetail';
-
+import ShowRank from "./pages/ShowRank";
 
 function App() {
   const [ID, setID] = useState("");
@@ -69,13 +69,23 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
-          <Route path="/trinregistration" element={<TrInRegistration/>}/>
-          <Route path="/tripDetail/:id"  element={<TripDetail User_ID={Cookies.get("ID")}/>}></Route>
-          <Route path="/festival" element={<Festival />}/>
-          <Route path="/festivalReg" element={<FestivalReg />}/>
-          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
-          <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
-          <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/trinregistration" element={<TrInRegistration />} />
+          <Route
+            path="/tripDetail/:id"
+            element={<TripDetail User_ID={Cookies.get("ID")} />}
+          ></Route>
+          <Route path="/festival" element={<Festival />} />
+          <Route path="/festivalReg" element={<FestivalReg />} />
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea />} />
+          <Route
+            path="/searchtrdomesticcategory"
+            element={<SearchTrDomesticCategory />}
+          />
+          <Route
+            path="/searchtroverseascategory"
+            element={<SearchTrOverseasCategory />}
+          />
+          <Route path="/ranking" element={<ShowRank />} />
           <Route path="/way-detail/:id" element={<WayDetail />} />
         </Routes>
         <Footer />
