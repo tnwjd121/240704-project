@@ -1,128 +1,125 @@
-import React, { useEffect, useState } from "react";
-import { SERVER_URL } from "../components/Api";
 import axios from "axios";
-import "../css/triplist.css";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { MdEdit } from "react-icons/md";
-import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
-import TripModal from "./TripModal";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { SERVER_URL } from "./Api";
 
-const PAGE_SIZE = 12;
-
-export default function Triplist() {
-  // 목록(수정, 삭제)
-  // 대한민국 == 국내, 대한민국 제외 == 해외
-  // 이미지와 지역, 카테고리, 장소명
-  const [trips, setTrips] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectOption, setSelectOption] = useState("국내");
-  const navigate = useNavigate();
+export default function ShowRanking() {
+  const [travelInfo, setTravelInfo] = useState([]);
+  const [ranking, setRanking] = useState([]);
+  const [sortedRanking, setSortedRanking] = useState([]);
+  const [sortOption, setSortOption] = useState("리뷰 수");
+  const [isLoading, setIsLoading] = useState(true);
+  const [filterRegion, setFilterRegion] = useState("국내"); // 기본값으로 국내 설정
 
   useEffect(() => {
-    fetchTrip();
-  }, [selectOption]);
+    const fetchData = async () => {
+      try {
+        const [travelInfoResponse, rankingResponse] = await Promise.all([
+          axios.get(`${SERVER_URL}/api/travel-info/all`),
+          axios.get(`${SERVER_URL}/Review/Ranking`),
+        ]);
 
-  const fetchTrip = async () => {
-    try {
-      const response = await axios.get(`${SERVER_URL}/api/travelInfoes`);
-      const tripData = response.data._embedded.travelInfoes;
-      const fiteredTrip = tripData.filter((trip) => {
-        if (selectOption === "국내") {
-          return trip.country === "대한민국";
+        // travelInfoResponse.data가 배열인지 확인
+        if (Array.isArray(travelInfoResponse.data)) {
+          setTravelInfo(travelInfoResponse.data);
         } else {
-          return trip.country !== "대한민국";
+          console.error("travelInfo 응답이 배열이 아닙니다.");
         }
-      });
-      setTrips(fiteredTrip);
-    } catch (error) {
-      console.error("카테고리 목록 에러 발생: ", error);
+
+        // rankingResponse.data가 배열인지 확인
+        if (Array.isArray(rankingResponse.data)) {
+          setRanking(rankingResponse.data);
+        } else {
+          console.error("ranking 응답이 배열이 아닙니다.");
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("데이터를 가져오는 중 오류 발생", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const sorted = [...ranking].sort((a, b) => {
+      if (sortOption === "리뷰 수") {
+        return b.reviewCount - a.reviewCount;
+      } else {
+        return b.avgScore - a.avgScore;
+      }
+    });
+    setSortedRanking(sorted);
+  }, [ranking, sortOption]);
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  const handleFilterRegion = (e) => {
+    setFilterRegion(e.target.value);
+  };
+
+  const getTravelInfoById = (id) => {
+    return travelInfo.find((travelInfo) => travelInfo.id == id) || {};
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // 국가 필터링된 리스트
+  const filteredRanking = sortedRanking.filter((item) => {
+    const travelInfoItem = getTravelInfoById(item.travelInfoId);
+
+    // travelInfoItem의 국가가 "국내"인지 확인
+    if (filterRegion === "국내") {
+      return travelInfoItem.country === "대한민국";
+    } else {
+      // "해외"인 경우
+      return travelInfoItem.country !== "대한민국";
     }
-  };
-
-  const deleteSubmit = async (url) => {
-    try {
-      const response = await axios.delete(`${url}`);
-      fetchTrip();
-    } catch (error) {
-      console.error("삭제 실패 :", error);
-    }
-  };
-  const totalPages = Math.ceil(trips.length / PAGE_SIZE);
-  const currentTrips = trips.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
-  );
-
-  const handleNextPage = () => {
-    setCurrentPage((next) => Math.min(next + 1, totalPages));
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const getId = (data) => {
-    const href = data._links.self.href;
-    const id = href.substring(href.lastIndexOf("/") + 1);
-    navigate(`/tripDetail/${id}`);
-  };
+  });
 
   return (
     <div className="body">
+      <h1>여행지 랭킹</h1>
       <div>
-        <h1>카테고리 목록</h1>
-        <select
-          id="category-option"
-          value={selectOption}
-          onChange={(e) => setSelectOption(e.target.value)}
-        >
-          <option>국내</option>
-          <option>해외</option>
+        <label>국가 : </label>
+        <select value={filterRegion} onChange={handleFilterRegion}>
+          <option value="국내">국내</option>
+          <option value="해외">해외</option>
         </select>
-        <div id="category-center">
-          <div className="category-list">
-            {currentTrips.map((trip) => (
-              <div key={trip.id} className="category-item">
-                <div className="img-div">
-                  <img
-                    src={trip.photoUrl}
-                    alt={trip.placeName}
-                    onClick={() => getId(trip)}
-                  ></img>
-                </div>
-                <div className="category-info">
-                  <p>지역: {trip.region}</p>
-                  <p>카테고리: {trip.category}</p>
-                  <p>장소명: {trip.placeName}</p>
-                  <p>
-                    <TripModal trip={trip} fetchTrip={fetchTrip} />
-                    <RiDeleteBin5Line
-                      className="category-icon"
-                      onClick={() => deleteSubmit(trip._links.self.href)}
-                    />
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div></div>
-        </div>
-        <button
-          id="left-button"
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-        >
-          <GrCaretPrevious className="button-icon" />
-        </button>
-        <button
-          id="right-button"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          <GrCaretNext className="button-icon" />
-        </button>
+        <label>정렬 : </label>
+        <select value={sortOption} onChange={handleSortChange}>
+          <option value="리뷰 수">리뷰 수</option>
+          <option value="평점 순">평점 순</option>
+        </select>
       </div>
+      <ul>
+        {filteredRanking.map((item) => {
+          const travelInfoItem = getTravelInfoById(item.travelInfoId);
+          return (
+            <div key={item.travelInfoId} className="category-item">
+              <div className="img-div">
+                <img
+                  src={travelInfoItem.photoUrl}
+                  alt={travelInfoItem.placeName}
+                />
+              </div>
+              <div className="category-info">
+                <p>지역: {travelInfoItem.region}</p>
+                <p>카테고리: {travelInfoItem.category}</p>
+                <p>장소명: {travelInfoItem.placeName}</p>
+                <p>
+                  {sortOption === "리뷰 수" ? item.reviewCount : item.avgScore}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </ul>
     </div>
   );
 }

@@ -1,0 +1,70 @@
+.way-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.way-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.way-search input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0;
+  width: 300px;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.search-button,
+.navigate-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px; 
+}
+
+.search-button:hover,
+.navigate-button:hover {
+  background-color: #004d00;
+}
+
+.map-container {
+  position: relative;
+  width: 50rem;
+  height: 27rem;
+}
+
+.destination-info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  z-index: 1000;
+}
+
+.way-map {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+

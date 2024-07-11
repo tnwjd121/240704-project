@@ -1,5 +1,6 @@
 package com.trip.review.ctrl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,19 @@ public class ReviewServiece {
 	    rRepo.save(newReview);
 	}
 	
-	public List<RankDto> ReviewRanking() {
-		return (List<RankDto>) rRepo.reviewRanking();
-	}
+	 public List<RankDto> ReviewRanking() {
+	        List<Object[]> results = rRepo.reviewRanking();
+	        List<RankDto> rankDtos = new ArrayList<RankDto>();
+
+	        for (Object[] result : results) {
+	            Long travelInfoId = ((Number) result[0]).longValue();
+	            Long reviewCount = ((Number) result[1]).longValue();
+	            Double avgScore = ((Number) result[2]).doubleValue();
+	            RankDto rankDto = new RankDto(travelInfoId, reviewCount, avgScore);
+	            rankDtos.add(rankDto);
+	        }
+	        
+	        return rankDtos;
+	 }
 	
 }

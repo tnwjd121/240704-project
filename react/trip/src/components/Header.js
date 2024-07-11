@@ -83,6 +83,11 @@ export default function Header({
                       축제 현황
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/ranking" className="link-style">
+                      여행지 랭킹
+                    </Link>
+                  </li>
                 </ul>
               )}
             </li>
