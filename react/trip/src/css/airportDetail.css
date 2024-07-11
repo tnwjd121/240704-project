@@ -26,7 +26,7 @@
 .way-container {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-self: start;
   margin-top: 20px;
 }
 
