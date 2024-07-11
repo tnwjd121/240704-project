@@ -20,6 +20,7 @@ import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
 import WayDetail from './pages/WayDetail';
+import AirportDetail from './pages/AirportDetail';
 import ShowRank from "./pages/ShowRank";
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
           />
           <Route path="/ranking" element={<ShowRank />} />
           <Route path="/way-detail/:id" element={<WayDetail />} />
+          <Route path="/airportdetail" element={<AirportDetail />} />
         </Routes>
         <Footer />
       </>
