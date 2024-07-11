@@ -1,4 +1,4 @@
-#trip-modal{
+#fes-modal{
   display: flex;
   flex-direction: column;
   width: 30rem;
@@ -15,22 +15,22 @@
   height: 30rem;
 }
 
-#trip-modal label{
+#fes-modal label{
   display: flex;
   padding: 3px 0px;
 }
-#trip-modal span {
+#fes-modal span {
   display: inline-block;
   font-size: 1rem;
   width: 8rem;
   font-weight:500;
 }
-#trip-modal input {
+#fes-modal input {
   width: 20rem;
   border: 1px solid rgb(63, 207, 63);
   outline: none;
 }
-#trip-modal select {
+#fes-modal select {
   border: 1px solid rgb(63, 207, 63);
 }
 

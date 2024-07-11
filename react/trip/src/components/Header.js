@@ -23,6 +23,8 @@ export default function Header({
   const [menuStates, setMenuStates] = useState({
     menu1: false,
     menu2: false,
+    menu3: false,
+    menu4: false
   });
 
   const toggleMenu = (menu) => {
@@ -60,11 +62,6 @@ export default function Header({
                       축제 등록
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/test" className="link-style">
-                      사이드 메뉴
-                    </Link>
-                  </li>
                 </ul>
               )}
             </li>
@@ -80,12 +77,12 @@ export default function Header({
                 <ul id="side-nav">
                   <li>
                     <Link to="/triplist" className="link-style">
-                      카테고리
+                      여행 현황
                     </Link>
                   </li>
                   <li>
                     <Link to="/festival" className="link-style">
-                      축제정보
+                      축제 현황
                     </Link>
                   </li>
                 </ul>
@@ -114,6 +111,29 @@ export default function Header({
                 </ul>
               )}
             </li>
+            <li
+              onMouseEnter={() => toggleMenu("menu4")}
+              onMouseLeave={() => toggleMenu("menu4")}
+            >
+              <span>
+                랭킹
+                <FaChevronDown className="react-icon" />
+              </span>
+              {menuStates.menu4 && (
+                <ul id="side-nav">
+                  <li>
+                    <Link to="/ranking" className="link-style">
+                      여행지 랭킹
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/fesranking" className="link-style">
+                      축제 랭킹
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
           </ul>
         </nav>
       </div>
@@ -121,7 +141,7 @@ export default function Header({
         <div className="user">
           {LoginOrNot ? (
             <Link to="/User">
-              <FaRegUserCircle /> {ID}님
+              <FaRegUserCircle />{ID}님
             </Link>
           ) : (
             <Link to="/login">
@@ -131,8 +151,8 @@ export default function Header({
         </div>
         <div className="user link">
           {LoginOrNot ? (
-            <div onClick={() => LogOut()}>
-              <FaRegUserCircle /> Logout
+            <div onClick={() => LogOut()} className="logout">
+              <FaRegUserCircle />Logout
             </div>
           ) : (
             <Link to="/Join">

@@ -11,7 +11,7 @@ import lombok.ToString;
 public class ReviewDto {
 	
 	@JsonProperty("id")
-    private Long id;
+    private Integer id;
     
 	@JsonProperty("travel_info_id")
 	private int travelInfoId;

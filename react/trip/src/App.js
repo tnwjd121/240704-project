@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
-import Test from "./pages/Test";
 import Join from "./pages/Join";
 import User from "./pages/User";
 import { useEffect, useState } from "react";
@@ -19,7 +18,10 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
-
+import ShowRank from './components/ShowRanking'
+import WayDetail from './pages/WayDetail'
+import AirportDetail from './pages/AirportDetail';
+import FestivalRanking from "./pages/FestivalRanking";
 
 function App() {
   const [ID, setID] = useState("");
@@ -60,21 +62,32 @@ function App() {
             }
           />
           <Route path="/join" element={<Join />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/User" element={<User ID={ID} />} />
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
-          <Route path="/trinregistration" element={<TrInRegistration/>}/>
-          <Route path="/tripDetail/:id"  element={<TripDetail User_ID={Cookies.get("ID")}/>}></Route>
-          <Route path="/festival" element={<Festival />}/>
-          <Route path="/festivalReg" element={<FestivalReg />}/>
-          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
-          <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
-          <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/trinregistration" element={<TrInRegistration />} />
+          <Route
+            path="/tripDetail/:id"
+            element={<TripDetail User_ID={Cookies.get("ID")} />}
+          ></Route>
+          <Route path="/festival" element={<Festival />} />
+          <Route path="/festivalReg" element={<FestivalReg />} />
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea />} />
+          <Route
+            path="/searchtrdomesticcategory"
+            element={<SearchTrDomesticCategory />}
+          />
+          <Route
+            path="/searchtroverseascategory"
+            element={<SearchTrOverseasCategory />}
+          />
+          <Route path="/ranking" element={<ShowRank />} />
+          <Route path="/way-detail/:id" element={<WayDetail />} />
+          <Route path="/airportdetail" element={<AirportDetail />} />
+          <Route path="/fesranking" element={<FestivalRanking />} />
         </Routes>
         <Footer />
       </>

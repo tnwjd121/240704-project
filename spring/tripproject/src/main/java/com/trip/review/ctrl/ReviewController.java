@@ -60,16 +60,10 @@ public class ReviewController {
 	
 	
 	
-	//리뷰순 랭킹 조회
-	@GetMapping("/Ranking/ReviewCount")
-	public List<CountRankDto> RankingReviewCount() {
-    	return rServe.RankingReviewCount();
-    }
-
-	//평점순 랭킹 조회
-	@GetMapping("/Ranking/ReviewScore")
-	public List<ScoreRankDto> RankingReviewScore() {
-    	return rServe.RankingReviewScore();
+	//랭킹 조회
+	@GetMapping("/Review/Ranking")
+	public List<RankDto> ReviewRanking() {
+    	return rServe.ReviewRanking();
     }
 	
 	

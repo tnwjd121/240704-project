@@ -15,11 +15,11 @@ export default function ShowReview({travelInfo_ID}) {
     try {
       const response = await axios.get(`${SERVER_URL}/Review/travelinfo=${travelInfo_ID}`)
       setReviews(response.data)
+      console.log(response.data)
     } catch (error) {
       console.error("카테고리 목록 에러 발생: " , error);
     }
   }
-
 
   return (
     <div id="review-list-body">

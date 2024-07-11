@@ -1,0 +1,8 @@
+#date-div{
+  margin-top: 2rem;
+  text-align: right;
+}
+#date-div input{
+  border: 1px solid;
+  text-align: center;
+}
