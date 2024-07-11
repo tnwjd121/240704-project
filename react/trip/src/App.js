@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
-import Test from "./pages/Test";
 import Join from "./pages/Join";
 import User from "./pages/User";
 import { useEffect, useState } from "react";
@@ -19,9 +18,6 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from './pages/FesDetailKorea'
-import WayDetail from './pages/WayDetail';
-import ShowRank from "./pages/ShowRank";
-
 function App() {
   const [ID, setID] = useState("");
   const [LoginOrNot, setLoginOrNot] = useState(false);
@@ -61,12 +57,10 @@ function App() {
             }
           />
           <Route path="/join" element={<Join />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/User" element={<User ID={ID} />} />
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
           <Route path="/trinregistration" element={<TrInRegistration />} />

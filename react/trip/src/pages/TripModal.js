@@ -49,6 +49,24 @@ export default function TripModal({trip, fetchTrip}) {
       console.error(error);
     }
   }
+
+  const addressSubmit = () =>{
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+          let addr = '';
+          if (data.userSelectedType === 'R') { 
+              addr = data.roadAddress;
+          } else {
+              addr = data.jibunAddress;
+          }
+          setUpdateTrips(prevState => ({
+            ...prevState,
+            address: addr
+          }))
+          document.getElementById("address").value = addr;
+      }
+  }).open();
+  }
   return (
     <>
       <MdEdit className='category-icon' onClick={() => handleOpen()}/>
@@ -79,7 +97,8 @@ export default function TripModal({trip, fetchTrip}) {
           </label>
           <label>
             <span>주소</span>
-            <input id='address' type='text' value={updateTrips.address} onChange={handleChage} />
+            <input id='address' type='text' value={updateTrips.address} onChange={handleChage} className='edit-address' style={{width:'14rem'}} />
+            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
           </label>
           <label>
             <span>상세</span>

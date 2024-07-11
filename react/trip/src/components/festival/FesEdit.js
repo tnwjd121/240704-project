@@ -83,12 +83,30 @@ export default function FesEdit({festival, fetchFestivals}) {
     {value:"전라남도", label:"전라남도"},
     {value:"제주도", label:"제주도"}
   ]
+
+  const addressSubmit = () =>{
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+          let addr = '';
+          if (data.userSelectedType === 'R') { 
+              addr = data.roadAddress;
+          } else {
+              addr = data.jibunAddress;
+          }
+          setUpdateFes(prevState => ({
+            ...prevState,
+            address: addr
+          }))
+          document.getElementById("address").value = addr;
+      }
+  }).open();
+  }
   
   return (
     <>
       <MdEdit className='category-icon' onClick={() => handleOpen()}/>
-      <div id='trip-modal' style={{display: open ? "block" : "none"}}>
-        <h1 id='modal-title'>여행 정보 수정</h1>
+      <div id='fes-modal' style={{display: open ? "block" : "none"}}>
+        <h1 id='modal-title'>축제 수정</h1>
           <label>
             <span>축제 이름</span>
             <input type='text' id="fesName" value={updateFes.fesName} onChange={handleChange} />
@@ -136,7 +154,8 @@ export default function FesEdit({festival, fetchFestivals}) {
           </label>
           <label>
             <span>주소</span>
-            <input type='text' id='address' value={updateFes.address} onChange={handleChange} />
+            <input type='text' id='address' value={updateFes.address} onChange={handleChange} style={{width:'14rem'}} />
+            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
           </label>
           <label>
             <span>주최</span>

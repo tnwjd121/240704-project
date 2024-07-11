@@ -1,25 +1,25 @@
-#trip-detail-info{
+#fes-detail-info{
   display: flex;
   justify-content: center;
   
 }
 
-#trip-detail-img img{
+#fes-detail-img img{
   width: 25rem;
   height: 20rem;
   border-radius: 1rem;
 }
-#trip-detail-text{
+#fes-detail-text{
   font-size: 1rem;
   margin-left: 2rem;
   width: 23rem;
 }
-#trip-detail-text strong{
+#fes-detail-text strong{
   display: inline-block;
   width: 5rem;
   text-align: left;
 }
-#trip-detail-text p{
+#fes-detail-text p{
   text-align: left;
 }
 
