@@ -1,7 +1,6 @@
 package com.trip.review.ctrl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,11 +68,8 @@ public class ReviewServiece {
 	    rRepo.save(newReview);
 	}
 	
-	public List<CountRankDto> RankingReviewCount() {
-		return (List<CountRankDto>) rRepo.rankByRCount();
+	public List<RankDto> ReviewRanking() {
+		return (List<RankDto>) rRepo.reviewRanking();
 	}
 	
-	public List<ScoreRankDto> RankingReviewScore() {
-		return (List<ScoreRankDto>) rRepo.rankByRScore();
-	}
 }

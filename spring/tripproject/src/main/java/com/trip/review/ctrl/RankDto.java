@@ -9,12 +9,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ScoreRankDto {
+public class RankDto {
 	
-	@JsonProperty("travel_info_id")
-	private int travel_info_id;
+	@JsonProperty("id")
+    private Long id;
+    
+	@JsonProperty("count(*)")
+	private int count;
 	
 	@JsonProperty("avg_score")
-	private int avg_score;
+    private float avgScore;
 
 }
