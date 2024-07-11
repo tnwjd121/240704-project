@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUserCircle } from "react-icons/fa";
-import '../css/TrInRheader.css';
+import '../css/TrInRegistration.css';
 import axios from 'axios';
 
 
@@ -79,19 +79,19 @@ export default function TrInRegistration() {
       <div className="registration-form-container">
         <form onSubmit={handleSubmit} className="registration-form">
           <label>
-            장소명
+            <span>장소명</span>
             <input type="text" name="placeName" value={formData.placeName} onChange={handleChange} />
           </label>
           <label>
-            국가명
+            <span>국가명</span>
             <input type="text" name="country" value={formData.country} onChange={handleChange} />
           </label>
           <label>
-            지역
+            <span>지역</span>
             <input type="text" name="region" value={formData.region} onChange={handleChange} />
           </label>
           <label>
-            카테고리
+            <span>카테고리</span>
             <select name="category" value={formData.category} onChange={handleChange}>
               <option value="자연명소">자연명소</option>
               <option value="레저">레저</option>
@@ -102,16 +102,16 @@ export default function TrInRegistration() {
             </select>
           </label>
           <label>
-            주소
-            <input type="text" name="address" value={formData.address} onChange={handleChange} id='address'/>
-            <input value={"주소검색"} type='button' onClick={addressSubmit}/>
+            <span>주소</span>
+            <input type="text" name="address" value={formData.address} onChange={handleChange} id='address' style={{width:'14rem'}}/>
+            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
           </label>
           <label>
-            상세
+            <span id='detail-text'>상세</span>
             <textarea name="description" value={formData.description} onChange={handleChange} />
           </label>
           <label>
-            이미지 URL
+            <span>이미지 URL</span>
             <input type="url" name="photoUrl" value={formData.photoUrl} onChange={handleChange} />
           </label>
           <button type="submit">등록</button>

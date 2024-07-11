@@ -32,13 +32,13 @@ export default function KFesDetail() {
   
   return (
     <div className='body'>
-      <div id='trip-detail'>
-        <h2>상세페이지</h2>
-        <div id='trip-detail-info'>
-          <div id='trip-detail-img'>
+      <div id='fes-detail'>
+        <h2>축제 상세</h2>
+        <div id='fes-detail-info'>
+          <div id='fes-detail-img'>
           <img src={festival.imageUrl} alt={festival.fesName}></img>
           </div>
-          <div id='trip-detail-text'>
+          <div id='fes-detail-text'>
             <p><strong>축제 이름:</strong> {festival.fesName}</p>
             <p><strong>축제기간:</strong>{festival.startDate} ~ {festival.endDate}
             </p>

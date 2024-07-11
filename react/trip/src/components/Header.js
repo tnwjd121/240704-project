@@ -60,11 +60,6 @@ export default function Header({
                       축제 등록
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/test" className="link-style">
-                      사이드 메뉴
-                    </Link>
-                  </li>
                 </ul>
               )}
             </li>
@@ -80,12 +75,12 @@ export default function Header({
                 <ul id="side-nav">
                   <li>
                     <Link to="/triplist" className="link-style">
-                      카테고리
+                      여행 현황
                     </Link>
                   </li>
                   <li>
                     <Link to="/festival" className="link-style">
-                      축제정보
+                      축제 현황
                     </Link>
                   </li>
                 </ul>
@@ -121,7 +116,7 @@ export default function Header({
         <div className="user">
           {LoginOrNot ? (
             <Link to="/User">
-              <FaRegUserCircle /> {ID}님
+              <FaRegUserCircle />{ID}님
             </Link>
           ) : (
             <Link to="/login">
@@ -131,8 +126,8 @@ export default function Header({
         </div>
         <div className="user link">
           {LoginOrNot ? (
-            <div onClick={() => LogOut()}>
-              <FaRegUserCircle /> Logout
+            <div onClick={() => LogOut()} className="logout">
+              <FaRegUserCircle />Logout
             </div>
           ) : (
             <Link to="/Join">

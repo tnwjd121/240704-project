@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../../css/TrInRheader.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../../css/fesRegistration.css'
 
 
 function FesReg() {
@@ -99,14 +99,14 @@ function FesReg() {
   return (
     <div>
       <h1>축제 등록</h1>
-      <div className="registration-form-container">
-        <form className="registration-form">
+      <div className="fes-form-container">
+        <form className="fes-form">
           <label>
-            축제 이름
+            <span>축제 이름</span>
             <input type='text' name="fesName" value={festival.fesName} onChange={handleChange} />
           </label>
           <label>
-            국내/해외
+            <span>국내/해외</span>
             <select name="country" value={festival.country} onChange={handleChange}>
               <option>국내</option>
               <option>해외</option>
@@ -115,11 +115,11 @@ function FesReg() {
           {(festival.country==="국내") && (
             <>
               <label>
-                국가명
+                <span>국가명</span>
                 <input type="text" name="countryName" value={festival.countryName="대한민국"} onChange={handleChange} readOnly/>
               </label>
               <label>
-                지역
+                <span>지역</span>
                 <select type="text" name="region" value={festival.region} onChange={handleChange}>
                   {kRegion.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -133,46 +133,47 @@ function FesReg() {
           {festival.country==="해외" && (
             <>
               <label>
-                국가명
+                <span>국가명</span>
                 <input type="text" name="countryName" value={festival.countryName} onChange={handleChange}/>
               </label>
               <label>
-                지역
+                <span>지역</span>
                 <input type="text" name="region" value={festival.region} onChange={handleChange} />
               </label>
             </>
           )}
           <label>
-            입장료
+            <span>입장료</span>
             <input type="text" name="price" value={festival.price} onChange={handleChange} />
           </label>
           <label>
-            주소
-            <input type="text" name="address" value={festival.address} onChange={handleChange} id='address'/>
-            <input value={"주소검색"} type='button' onClick={addressSubmit}/>
+            <span>주소</span>
+            <input type="text" name="address" value={festival.address} onChange={handleChange} id='address' style={{width:'14rem'}}/>
+            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
           </label>
           <label>
-            주최
+            <span>주최</span>
             <input type="text" name="host" value={festival.host} onChange={handleChange} />
           </label>
           <label>
-            전화번호
+            <span>전화번호</span>
             <input type="text" name="phoneNumber" value={festival.phoneNumber} onChange={handleChange} />
           </label>
           <label>
-            시작일
+            
+            <span>개최일</span>
             <input type="date" name="startDate" value={festival.startDate} onChange={handleChange} />
           </label>
           <label>
-            종료일
+            <span>개막일</span>
             <input type="date" name="endDate" value={festival.endDate} onChange={handleChange} />
           </label>
           <label>
-            설명
+            <span id='detail-text'>상세</span>
             <textarea name="detail" value={festival.description} onChange={handleChange} />
           </label>
           <label>
-            사진 URL
+            <span>이미지 URL</span>
             <input type="url" name="imageUrl" value={festival.imageUrl} onChange={handleChange} />
           </label>
           <button type="submit" onClick={handleSave}>등록</button>

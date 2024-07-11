@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import "../../css/triplist.css"
+import "../../css/FesList.css"
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCaretPrevious,GrCaretNext } from "react-icons/gr";
 import FesEdit from './FesEdit';
@@ -68,30 +68,30 @@ export default function Feslist() {
 
   return (
     <div>
-      <h1>축제 목록</h1>
+      <h1>축제 현황</h1>
       <select 
-        id='category-option' 
+        id='fes-option' 
         value={selectOption} 
         onChange={(e)=>setSelectOption(e.target.value)}
       >
         <option>국내</option>
         <option>해외</option>
       </select>
-        <div id='category-center'>
-          <div className='category-list'>
+        <div id='fes-center'>
+          <div className='fes-list'>
           {currentFestivals.map(festival => (
-            <div key={festival.id} className='category-item'>
+            <div key={festival.id} className='fes-item'>
               <div className='img-div'>
                 <img src={festival.imageUrl} alt={festival.fesName} onClick={()=>getId(festival)}></img>
               </div>
-              <div className='category-info'>
+              <div className='fes-info'>
                 <p>축제 이름: {festival.fesName}</p>
                 {festival.country==="국내" && (<p>지역: {festival.region}</p>)}
                 {festival.country==="해외" && (<p>국가: {festival.countryName}</p>)}
                 <p>{festival.startDate} ~ {festival.endDate}</p>
                 <p>
                   <FesEdit festival={festival} fetchFestivals={fetchFestivals}/>
-                  <RiDeleteBin5Line className='category-icon' onClick={()=>deleteSubmit(festival._links.self.href)}/>
+                  <RiDeleteBin5Line className='fes-icon' onClick={()=>deleteSubmit(festival._links.self.href)}/>
                 </p>
               </div>
             </div>

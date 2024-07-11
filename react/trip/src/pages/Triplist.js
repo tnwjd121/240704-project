@@ -69,7 +69,7 @@ export default function Triplist() {
   return (
     <div className='body'>
       <div>
-        <h1>카테고리 목록</h1>
+        <h1>여행 현황</h1>
         <select 
           id='category-option' 
           value={selectOption} 
