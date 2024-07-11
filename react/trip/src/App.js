@@ -68,13 +68,22 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/triplist" element={<Triplist />} />
           <Route path="/modal" element={<TripModal />} />
-          <Route path="/trinregistration" element={<TrInRegistration/>}/>
-          <Route path="/tripDetail/:id"  element={<TripDetail User_ID={Cookies.get("ID")}/>}></Route>
-          <Route path="/festival" element={<Festival />}/>
-          <Route path="/festivalReg" element={<FestivalReg />}/>
-          <Route path="/KFesDetail/:id" element={<FesDetailKorea/>} />
-          <Route path="/searchtrdomesticcategory" element={<SearchTrDomesticCategory/>}/>
-          <Route path="/searchtroverseascategory" element={<SearchTrOverseasCategory/>}/>
+          <Route path="/trinregistration" element={<TrInRegistration />} />
+          <Route
+            path="/tripDetail/:id"
+            element={<TripDetail User_ID={Cookies.get("ID")} />}
+          ></Route>
+          <Route path="/festival" element={<Festival />} />
+          <Route path="/festivalReg" element={<FestivalReg />} />
+          <Route path="/KFesDetail/:id" element={<FesDetailKorea />} />
+          <Route
+            path="/searchtrdomesticcategory"
+            element={<SearchTrDomesticCategory />}
+          />
+          <Route
+            path="/searchtroverseascategory"
+            element={<SearchTrOverseasCategory />}
+          />
         </Routes>
         <Footer />
       </>
