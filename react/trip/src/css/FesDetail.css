@@ -6,7 +6,7 @@
 
 #fes-detail-img img{
   width: 25rem;
-  height: 20rem;
+  height: 18rem;
   border-radius: 1rem;
 }
 #fes-detail-text{
@@ -34,5 +34,11 @@
 }
 
 #map{
+  margin: 0 auto;
+}
+
+#description-fes{
+  text-align: left;
+  width: 50rem;
   margin: 0 auto;
 }

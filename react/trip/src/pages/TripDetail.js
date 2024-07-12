@@ -51,13 +51,13 @@ export default function TripDetail({ User_ID }) {
               <strong>카테고리:</strong> {trip.category}
             </p>
             <p>
-              <strong>상세:</strong> {trip.description}
-            </p>
-            <p>
               <strong>주소:</strong> {trip.address}
             </p>
           </div>
         </div>
+        <p id="description">
+          <strong>상세:</strong> {trip.description}
+        </p>
         <p id="map-title">상세 지도</p>
         <Kakao address={trip.address} />
         <WriteReview user_ID={User_ID} travelInfo_ID={id} />

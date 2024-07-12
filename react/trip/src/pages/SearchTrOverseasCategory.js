@@ -114,7 +114,7 @@ const SearchTrOverseasCategory = () => {
                   <td>{result.country}</td>
                   <td>{result.region}</td>
                   <td>{result.placeName}</td>
-                  <td>{result.score}</td>
+                  <td>{result.score>0?result.score:"리뷰 없음"}</td>
                   <td>
                     <Link to={`/airportdetail`}>
                       <button className="path">
