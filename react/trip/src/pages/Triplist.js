@@ -125,7 +125,8 @@ const Triplist = () => {
                 </div>
                 <div className="category-info">
                   <p>
-                    장소명: {trip.placeName} 평점:{" "}
+                    장소명: {trip.placeName}{" "}
+                    <span style={{ color: "#F2CB07" }}>★</span>{" "}
                     {trip.score !== null ? trip.score : "리뷰 없음"}
                   </p>
                   <p>지역: {trip.region}</p>
