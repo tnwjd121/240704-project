@@ -39,16 +39,26 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  border: 3px solid #006400; 
+  border-top: 1px solid #006400;
+  border-bottom: 1px solid #006400;
+
   table-layout: fixed; /* 테이블 레이아웃 고정 */
 }
 
 .search-results th,
 .search-results td {
-  border: 2px solid #006400; 
   padding: 10px;
   text-align: center; 
   vertical-align: middle; 
+}
+
+.search-results th{
+  border-bottom: 1px solid #006400; 
+}
+
+.search-results tr:nth-child(2n){
+  border-top: 1px solid rgb(209, 209, 209);
+  border-bottom: 1px solid rgb(209, 209, 209);
 }
 
 .search-results th {
@@ -73,7 +83,8 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  border: 1px solid green;
+  border: 1px solid rgb(0, 196, 0);
+  border-radius: 1rem;
   background-color: white;
   cursor: pointer;
   width: auto;

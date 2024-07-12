@@ -99,10 +99,10 @@ const SearchTrOverseasCategory = () => {
           <table>
             <thead>
               <tr>
+                <th>장소명</th>
                 <th>카테고리</th>
-                <th>나라</th>
+                <th>국가</th>
                 <th>지역</th>
-                <th>장소 이름</th>
                 <th>별점</th>
                 <th>공항편 정보</th>
               </tr>
@@ -110,10 +110,10 @@ const SearchTrOverseasCategory = () => {
             <tbody>
               {results.map((result) => (
                 <tr key={result.id}>
+                  <td>{result.placeName}</td>
                   <td>{result.category}</td>
                   <td>{result.country}</td>
                   <td>{result.region}</td>
-                  <td>{result.placeName}</td>
                   <td>{result.score>0?result.score:"리뷰 없음"}</td>
                   <td>
                     <Link to={`/airportdetail`}>

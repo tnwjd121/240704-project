@@ -100,12 +100,17 @@ export default function Header({
                 <ul id="side-nav">
                   <li>
                     <Link to="/searchtrdomesticcategory" className="link-style">
-                      국내 여행 카테고리
+                      국내 여행
                     </Link>
                   </li>
                   <li>
                     <Link to="/searchtroverseascategory" className="link-style">
-                      해외 여행 카테고리
+                      해외 여행
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/searchFes" className="link-style">
+                      축제
                     </Link>
                   </li>
                 </ul>
