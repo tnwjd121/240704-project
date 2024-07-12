@@ -29,9 +29,10 @@ public class Festival {
 	private Integer fesId;
 	
 	@Column(nullable = false)
-	private String country, fesName, address, imageUrl, price, phoneNumber, host;
+	private String country, fesName, address, imageUrl, price, phoneNumber, host, countryName, region;
 	
-	private String detail, countryName, region;
+	@Column(length = 500)
+	private String detail;
 	 
 	@Column(nullable = false)
 	private Date startDate;

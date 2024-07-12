@@ -152,11 +152,21 @@ export default function FesEdit({festival, fetchFestivals}) {
             <span>입장료</span>
             <input type="text" id="price" value={updateFes.price} onChange={handleChange} />
           </label>
-          <label>
-            <span>주소</span>
-            <input type='text' id='address' value={updateFes.address} onChange={handleChange} style={{width:'14rem'}} />
-            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
-          </label>
+          {(updateFes.country==="국내") && (
+            <>
+              <label>
+                <span>주소</span>
+                <input type='text' id='address' value={updateFes.address} onChange={handleChange} style={{width:'14rem'}} />
+                <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
+              </label>
+            </>
+          )}
+          {updateFes.country==="해외" && (
+            <label>
+              <span>주소</span>
+              <input type="text" name="address" value={festival.address} onChange={handleChange} />
+            </label>
+          )}
           <label>
             <span>주최</span>
             <input type='text' id='host' value={updateFes.host} onChange={handleChange} />
@@ -175,7 +185,7 @@ export default function FesEdit({festival, fetchFestivals}) {
           </label>
           <label>
             <span>설명</span>
-            <input type='text' id='detail' value={updateFes.description} onChange={handleChange} />
+            <input type='text' id='detail' value={updateFes.detail} onChange={handleChange} />
           </label>
           <label>
             <span>이미지 URL</span>

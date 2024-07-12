@@ -21,10 +21,17 @@
 
 
 .registration-form input,
-.registration-form textarea,
-.registration-form select {
+.registration-form textarea{
   padding: 0.3rem;
   width: 20rem;
+  border: 1px solid #00b300; 
+  border-radius: 4px;
+  font-size: 1rem; 
+}
+
+.registration-form select {
+  padding: 0.3rem;
+  width: 20.7rem;
   border: 1px solid #00b300; 
   border-radius: 4px;
   font-size: 1rem; 

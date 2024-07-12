@@ -8,7 +8,7 @@ import '../css/festivalrank.css'
 
 const PAGE_SIZE = 5;
 
-export default function FestivalRank({date}) {
+export default function FestivalRank({date, selectoption}) {
 
   const [festivalRank, setFestivalRank] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,12 +19,27 @@ export default function FestivalRank({date}) {
     feslist()
     setCurrentPage(1)
   },[date])
+  useEffect(()=>{
+    feslist()
+    setCurrentPage(1)
+  },[selectoption])
 
   const feslist = async () => {
     try {
       const response = await axios.get(`${SERVER_URL}/api/festivals`)
       const fesData = response.data._embedded.festivals
-      const filterRank = fesData.filter(fes => {
+      
+      const filterRegion = fesData.filter(festival => {
+        if(selectoption === '전체'){
+          return festival.country === '국내' || festival.country === '해외';
+        }else if(selectoption === '해외'){
+          return festival.country === '해외'
+        }else{
+          return festival.region === selectoption
+        }
+      })
+
+      const filterRank = filterRegion.filter(fes => {
         const startday =  fes.startDate;
         const endday = fes.endDate;
         return startday <= date && date <=endday;

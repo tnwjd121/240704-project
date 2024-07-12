@@ -5,7 +5,6 @@ import '../../css/fesRegistration.css'
 
 
 function FesReg() {
-  const [festivals,setFestivals] = useState([])
   const [festival, setFestival] = useState({
     country: '국내',
     countryName: '',
@@ -25,14 +24,9 @@ function FesReg() {
     setFestival({...festival,[event.target.name]:event.target.value})
   };
 
-  const fetchFestivals=()=>{
-    fetch("http://localhost:8080/api/festivals")
-    .then(res=>res.json())
-    .then(data=>
-      setFestivals(data._embedded.festivals)
-    )
-    .catch(err=>console.log(err))
-  }
+  const handleChange2 = (event) => {
+    setFestival({...festival,countryName:'', region:'',[event.target.name]:event.target.value})
+  };
 
   const navigate = useNavigate();
 
@@ -107,7 +101,7 @@ function FesReg() {
           </label>
           <label>
             <span>국내/해외</span>
-            <select name="country" value={festival.country} onChange={handleChange}>
+            <select name="country" value={festival.country} onChange={handleChange2}>
               <option>국내</option>
               <option>해외</option>
             </select>
@@ -143,14 +137,26 @@ function FesReg() {
             </>
           )}
           <label>
-            <span>입장료</span>
+            <span>입장료<small>(단위:원)</small></span>
             <input type="text" name="price" value={festival.price} onChange={handleChange} />
           </label>
-          <label>
-            <span>주소</span>
-            <input type="text" name="address" value={festival.address} onChange={handleChange} id='address' style={{width:'14rem'}}/>
-            <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
-          </label>
+            {(festival.country==="국내") && (
+              <>
+                <label>
+                  <span>주소</span>
+                  <input type="text" name="address" value={festival.address} onChange={handleChange} id='address' style={{width:'14rem'}}/>
+                  <input value={"주소검색"} type='button' onClick={addressSubmit} style={{width:'6rem'}}/>
+                </label>
+              </>
+            )}
+            {festival.country==="해외" && (
+              <>
+                <label>
+                  <span>주소</span>
+                  <input type="text" name="address" value={festival.address} onChange={handleChange} />
+                </label>
+              </>
+            )}
           <label>
             <span>주최</span>
             <input type="text" name="host" value={festival.host} onChange={handleChange} />

@@ -18,6 +18,7 @@ import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
 import FesDetailKorea from "./pages/FesDetailKorea";
+import FesDetailForeign from "./pages/FesDetailForeign";
 import ShowRank from "./components/ShowRanking";
 import WayDetail from "./pages/WayDetail";
 import AirportDetail from "./pages/AirportDetail";
@@ -76,6 +77,7 @@ function App() {
           <Route path="/festival" element={<Festival />} />
           <Route path="/festivalReg" element={<FestivalReg />} />
           <Route path="/KFesDetail/:id" element={<FesDetailKorea />} />
+          <Route path="/FFesDetail/:id" element={<FesDetailForeign />} />
           <Route
             path="/searchtrdomesticcategory"
             element={<SearchTrDomesticCategory />}

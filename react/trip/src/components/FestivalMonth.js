@@ -7,7 +7,7 @@ import '../css/festivalMonth.css'
 
 const PAGE_SIZE = 5;
 
-export default function FestivalMonth({date}) {
+export default function FestivalMonth({date, selectoption}) {
   
   const [festivalMonth, setFestivalMonth] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,19 +18,37 @@ export default function FestivalMonth({date}) {
     setCurrentPage(1)
   },[date])
 
+  useEffect(()=>{
+    feslist()
+    setCurrentPage(1)
+  },[selectoption])
+
   const feslist = async () => {
     try {
       const response = await axios.get(`${SERVER_URL}/api/festivals`)
       const fesData = response.data._embedded.festivals
-      const filterMonth = fesData.filter(fes => {
+
+      const filterRegion = fesData.filter(festival => {
+        if(selectoption === '전체'){
+          return festival.country === '국내' || festival.country === "해외";
+        }else if(selectoption === '해외'){
+          return festival.country === '해외'
+        }else{
+          return festival.region === selectoption
+        }
+      })
+
+      const filterMonth = filterRegion.filter(fes => {
         const month = new Date(fes.startDate)
         return month.getMonth() === new Date(date).getMonth()
       })
+
       const sortedMonth = filterMonth.sort((a,b) => {
         const dateA = new Date(a.startDate);
         const dateB = new Date(b.startDate)
         return dateA - dateB;
       })
+      
       setFestivalMonth(filterMonth)
     } catch (error) {
       console.error("랭킹오류 :", error);
