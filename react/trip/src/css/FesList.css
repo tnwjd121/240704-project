@@ -23,7 +23,7 @@
   display: block;
   border-radius: 10px;
 }
-.fes-info{
+.fes-infom{
   width: 18rem;
   height:4.0rem;
   font-size: 0.7rem;
@@ -33,7 +33,7 @@
   bottom: 0;
   left: 0;
 }
-.fes-info p{
+.fes-infom p{
   margin: 0;
   margin-left: 1rem;
   color: green;

@@ -84,7 +84,7 @@ export default function Feslist() {
               <div className='img-div'>
                 <img src={festival.imageUrl} alt={festival.fesName} onClick={()=>getId(festival)}></img>
               </div>
-              <div className='fes-info'>
+              <div className='fes-infom'>
                 <p>축제 이름: {festival.fesName}</p>
                 {festival.country==="국내" && (<p>지역: {festival.region}</p>)}
                 {festival.country==="해외" && (<p>국가: {festival.countryName}</p>)}
