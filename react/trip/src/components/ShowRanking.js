@@ -129,7 +129,6 @@ export default function ShowRanking() {
                   </div>
                   <div>카테고리: {travelInfoItem.category}</div>
                   <div>주소 : {travelInfoItem.address}</div>
-                  <div>상세 : {travelInfoItem.description}</div>
                 </div>
               </div>
               <div className="category-info"></div>
