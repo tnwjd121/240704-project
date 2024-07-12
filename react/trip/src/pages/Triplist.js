@@ -16,24 +16,27 @@ const Triplist = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchRanking = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/Review/Ranking"
-        );
-        if (Array.isArray(response.data)) {
-          setRanking(response.data);
-        } else {
-          console.error("ranking 응답이 배열이 아닙니다.");
-        }
-      } catch (error) {
-        console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
-      }
-    };
+    fetchData();
+    fetchRanking();
+  }, []);
 
+  useEffect(() => {
     fetchData();
     fetchRanking();
   }, [selectOption]);
+
+  const fetchRanking = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/Review/Ranking");
+      if (Array.isArray(response.data)) {
+        setRanking(response.data);
+      } else {
+        console.error("ranking 응답이 배열이 아닙니다.");
+      }
+    } catch (error) {
+      console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
+    }
+  };
 
   const fetchData = async () => {
     try {
