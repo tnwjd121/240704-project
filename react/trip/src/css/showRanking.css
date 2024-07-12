@@ -1,0 +1,46 @@
+#rank-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rankBox{
+  display: flex;
+  margin: 0.5rem auto;
+  width: 40rem;
+}
+
+.rank-img img{
+  width: 18rem;
+  height: 12rem;
+  display: block;
+  border-radius: 10px;
+}
+.trip-rank-text{
+  padding: 1rem;
+  width: 22rem;
+}
+
+.rank-text-top{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  
+}
+.rank-text-end{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.rank-text-end div{
+  margin: 0.2rem 0px;
+}
+
+#rank-select{
+  margin-bottom: 1rem;
+}
+
+#rank-select select{
+  border: 1px solid;
+  border-radius: 0.3rem;
+}

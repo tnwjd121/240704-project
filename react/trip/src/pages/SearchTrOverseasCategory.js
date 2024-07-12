@@ -1,44 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../css/SearchTrCategory.css'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../css/SearchTrCategory.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { SERVER_URL } from "../components/Api";
 
 const SearchTrOverseasCategory = () => {
-  const [category, setCategory] = useState('전체');
-  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState("전체");
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [allData, setAllData] = useState([]);
+  const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
     // 대한민국이 아닌 모든 데이터를 가져옴
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/travel-info/all');
-        const OverseasData = response.data.filter(item => item.country !== '대한민국');
+        const response = await axios.get(
+          "http://localhost:8080/api/travel-info/all"
+        );
+        const OverseasData = response.data.filter(
+          (item) => item.country !== "대한민국"
+        );
         setAllData(OverseasData);
         setResults(OverseasData);
       } catch (error) {
-        console.error('데이터 가져오기 중 오류 발생:', error);
+        console.error("데이터 가져오기 중 오류 발생:", error);
+      }
+    };
+
+    const fetchData2 = async () => {
+      try {
+        const response = await axios.get(`${SERVER_URL}/Review/Ranking`);
+        if (Array.isArray(response.data)) {
+          setRanking(response.data);
+        } else {
+          console.error("ranking 응답이 배열이 아닙니다.");
+        }
+      } catch (error) {
+        console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
       }
     };
 
     fetchData();
+    fetchData2();
   }, []);
 
+  useEffect(() => {
+    handleSearch();
+  }, [allData, ranking, category, query]);
+
   const handleSearch = () => {
-    const filteredResults = allData.filter(item =>
-      (category === '전체' || item.category === category) && item.placeName.includes(query)
+    // 별점 데이터를 업데이트
+    const updatedData = allData.map((item) => {
+      const rankItem = ranking.find((rank) => rank.travelInfoId === item.id);
+      return rankItem ? { ...item, score: rankItem.avgScore } : item;
+    });
+
+    const filteredResults = updatedData.filter(
+      (item) =>
+        (category === "전체" || item.category === category) &&
+        item.placeName.includes(query)
     );
+
     setResults(filteredResults);
   };
 
   return (
-    <div className='body'>
+    <div className="body">
       <div className="search-bar-container">
         <div className="search-bar">
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="전체">전체</option>
             <option value="자연명소">자연명소</option>
             <option value="레저">레저</option>
@@ -47,11 +83,11 @@ const SearchTrOverseasCategory = () => {
             <option value="공연(전시)">공연(전시)</option>
             <option value="음식점(카페)">음식점(카페)</option>
           </select>
-          <input 
-            type="text" 
-            placeholder="가고 싶은 장소를 검색하세요." 
-            value={query} 
-            onChange={(e) => setQuery(e.target.value)} 
+          <input
+            type="text"
+            placeholder="가고 싶은 장소를 검색하세요."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <button onClick={handleSearch}>
             <FontAwesomeIcon icon={faSearch} />
@@ -72,13 +108,13 @@ const SearchTrOverseasCategory = () => {
               </tr>
             </thead>
             <tbody>
-              {results.map(result => (
+              {results.map((result) => (
                 <tr key={result.id}>
                   <td>{result.category}</td>
                   <td>{result.country}</td>
                   <td>{result.region}</td>
                   <td>{result.placeName}</td>
-                  <td></td>
+                  <td>{result.score}</td>
                   <td>
                     <Link to={`/airportdetail`}>
                       <button className="path">
@@ -91,9 +127,7 @@ const SearchTrOverseasCategory = () => {
             </tbody>
           </table>
         ) : (
-          <div className="no-results">
-            검색결과가 없습니다.
-          </div>
+          <div className="no-results">검색결과가 없습니다.</div>
         )}
       </div>
     </div>
@@ -101,4 +135,3 @@ const SearchTrOverseasCategory = () => {
 };
 
 export default SearchTrOverseasCategory;
-

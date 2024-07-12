@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "./Api";
+import '../css/showRanking.css'
+import { useNavigate } from "react-router-dom";
 
 export default function ShowRanking() {
   const [travelInfo, setTravelInfo] = useState([]);
@@ -9,6 +11,7 @@ export default function ShowRanking() {
   const [sortOption, setSortOption] = useState("리뷰 수");
   const [isLoading, setIsLoading] = useState(true);
   const [filterRegion, setFilterRegion] = useState("국내"); // 기본값으로 국내 설정
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,6 +68,7 @@ export default function ShowRanking() {
     return travelInfo.find((travelInfo) => travelInfo.id === id) || {};
   };
 
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -82,71 +86,57 @@ export default function ShowRanking() {
     }
   });
 
+  const getId = (id) => {
+    navigate(`/tripDetail/${id}`);
+  };
+
   return (
     <div className="body">
       <h1>여행지 랭킹</h1>
-      <div>
-        <label>국가 : </label>
-        <select value={filterRegion} onChange={handleFilterRegion}>
+      <div id="rank-select">
+        <label>국내/해외 : </label>
+        <select value={filterRegion} onChange={handleFilterRegion} style={{marginRight:'1rem'}}>
           <option value="국내">국내</option>
           <option value="해외">해외</option>
         </select>
-        <label>정렬 : </label>
+        <label>랭킹 : </label>
         <select value={sortOption} onChange={handleSortChange}>
           <option value="리뷰 수">리뷰 수</option>
           <option value="평점 순">평점 순</option>
         </select>
       </div>
-      <ul>
+      <div id="rank-body">
         {filteredRanking.map((item) => {
           const travelInfoItem = getTravelInfoById(item.travelInfoId);
           return (
             <div key={item.travelInfoId} className="rankBox">
-              <a href={`http://localhost:3000/tripDetail/${item.travelInfoId}`}>
-                <table>
-                  <tr>
-                    <td rowspan="3">
-                      <div className="img-div">
-                        <img src={travelInfoItem.photoUrl} alt="" />
-                      </div>
-                    </td>
-                    <td colspan="2">
-                      <p>{travelInfoItem.placeName}</p>
-                    </td>
-                    <td>
-                      <p>
-                        {sortOption === "리뷰 수"
-                          ? "리뷰 수 : " + item.reviewCount
-                          : "평점 : " + item.avgScore}
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>
-                        국가 : {travelInfoItem.country} 및 지역:{" "}
-                        {travelInfoItem.region}
-                      </p>
-                    </td>
-                    <td>
-                      <p>주소 : {travelInfoItem.address}</p>
-                    </td>
-                    <td>
-                      <p>카테고리: {travelInfoItem.category}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <p>설명 : {travelInfoItem.description}</p>
-                    </td>
-                  </tr>
-                </table>
-              </a>
+              <div className="rank-img">
+                <img src={travelInfoItem.photoUrl} alt="" onClick={()=>getId(travelInfoItem.id)}/>
+              </div>
+              <div className="trip-rank-text">
+                <div className="rank-text-top">
+                  <div>
+                    {travelInfoItem.placeName}
+                  </div>
+                  <div>
+                    {sortOption === "리뷰 수"
+                    ? "리뷰 수 : " + item.reviewCount
+                    : "평점 : " + item.avgScore}
+                  </div>
+                </div>
+                <div className="rank-text-end">
+                  <div> 지역:{" "} {travelInfoItem.region}({travelInfoItem.country})
+                  </div>
+                  <div>카테고리: {travelInfoItem.category}</div>
+                  <div>주소 : {travelInfoItem.address}</div>
+                  <div>상세 : {travelInfoItem.description}</div>
+                </div>
+              </div>
               <div className="category-info"></div>
             </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
