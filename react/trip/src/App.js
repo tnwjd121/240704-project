@@ -17,10 +17,10 @@ import FestivalReg from "./pages/FestivalReg";
 import SearchTrDomesticCategory from "./pages/SearchTrDomesticCategory";
 import SearchTrOverseasCategory from "./pages/SearchTrOverseasCategory";
 import Cookies from "js-cookie";
-import FesDetailKorea from './pages/FesDetailKorea'
-import ShowRank from './components/ShowRanking'
-import WayDetail from './pages/WayDetail'
-import AirportDetail from './pages/AirportDetail';
+import FesDetailKorea from "./pages/FesDetailKorea";
+import ShowRank from "./components/ShowRanking";
+import WayDetail from "./pages/WayDetail";
+import AirportDetail from "./pages/AirportDetail";
 import FestivalRanking from "./pages/FestivalRanking";
 
 function App() {
