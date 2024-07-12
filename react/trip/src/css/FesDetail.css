@@ -5,8 +5,13 @@
 }
 
 #fes-detail-img img{
+<<<<<<< HEAD
   width: 25rem;
   height: 18rem;
+=======
+  width: 18rem;
+  height: 20rem;
+>>>>>>> origin/kkt
   border-radius: 1rem;
 }
 #fes-detail-text{
