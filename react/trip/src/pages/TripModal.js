@@ -43,6 +43,7 @@ export default function TripModal({trip, fetchTrip}) {
   const handleSave = async(url) => {
     try {
       const response = await axios.put(`${url}`,updateTrips)
+      console.log(url)
       fetchTrip();
       setOpen(false)
     } catch (error) {

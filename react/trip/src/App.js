@@ -23,6 +23,7 @@ import ShowRank from "./components/ShowRanking";
 import WayDetail from "./pages/WayDetail";
 import AirportDetail from "./pages/AirportDetail";
 import FestivalRanking from "./pages/FestivalRanking";
+import SearchFestival from "./pages/SearchFestival";
 
 function App() {
   const [ID, setID] = useState("");
@@ -90,6 +91,7 @@ function App() {
           <Route path="/way-detail/:id" element={<WayDetail />} />
           <Route path="/airportdetail" element={<AirportDetail />} />
           <Route path="/fesranking" element={<FestivalRanking />} />
+          <Route path="/searchFes" element={<SearchFestival/>} />
         </Routes>
         <Footer />
       </>

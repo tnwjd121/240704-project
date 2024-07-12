@@ -56,6 +56,7 @@ export default function FesEdit({festival, fetchFestivals}) {
     }else{
       try {
         const response = await axios.put(`${url}`,updateFes)
+        console.log(url)
         fetchFestivals();
         setOpen(false)
       } catch (error) {

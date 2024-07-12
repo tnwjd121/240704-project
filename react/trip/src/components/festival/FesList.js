@@ -17,11 +17,7 @@ export default function Feslist() {
 
   useEffect(()=>{
     fetchFestivals()
-  },[selectOption])
-
-  useEffect(()=>{
-    fetchFestivals()
-  },[selectOption2])
+  },[selectOption, selectOption2])
 
   const fetchFestivals = async () => {
     try {
@@ -40,7 +36,6 @@ export default function Feslist() {
       })
 
       setFestivals(fiteredFestival)
-
     } catch (error) {
       console.error("카테고리 목록 에러 발생: " , error);
     }

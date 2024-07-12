@@ -4,27 +4,27 @@
   flex-direction: row;
   justify-content: flex-start;
   align-content: center;
-  height: 15rem;
+  height: 12rem;
   width: 99%;
 }
 
 #rank-item{
-  width: 18rem;
-  height: 12rem;
+  width: 15rem;
+  height: 10rem;
   position: relative;
   border-radius: 10px;
   margin: 1rem 1rem;
 }
 
 .img-item img{
-  width: 18rem;
-  height: 12rem;
+  width: 15rem;
+  height: 10rem;
   display: block;
   border-radius: 10px;
   z-index: 1;
 }
 .fes-info{
-  width: 18rem;
+  width: 15rem;
   height:3.4rem;
   font-size: 0.7rem;
   text-align: left;
@@ -32,4 +32,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
+}
+.fes-info p {
+  margin: 0;
+  color: green;
+  margin-left: 1rem;
 }

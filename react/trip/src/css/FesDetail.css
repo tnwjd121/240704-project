@@ -36,3 +36,9 @@
 #map{
   margin: 0 auto;
 }
+
+#description-fes{
+  text-align: left;
+  width: 50rem;
+  margin: 0 auto;
+}

@@ -46,9 +46,11 @@ export default function KFesDetail() {
             <p><strong>주최:</strong> {festival.host}</p>
             <p><strong>전화번호:</strong> {festival.phoneNumber}</p>
             <p><strong>주소:</strong> {festival.address}</p>
-            <p><strong>상세:</strong> {festival.detail}</p>
           </div>
         </div>
+        <p id='description-fes'>
+          <strong>상세:</strong> {festival.detail}
+        </p>
         <p id='map-title'>상세 지도</p>
         <Kakao address={festival.address}/>
       </div>
