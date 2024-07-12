@@ -1,74 +1,81 @@
 import React, { useEffect, useState } from "react";
-import { SERVER_URL } from "../components/Api";
 import axios from "axios";
-import "../css/triplist.css";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { MdEdit } from "react-icons/md";
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 import TripModal from "./TripModal";
 import { useNavigate } from "react-router-dom";
+import "../css/triplist.css";
 
 const PAGE_SIZE = 12;
 
-export default function Triplist() {
-  const [trips, setTrips] = useState([]);
+const Triplist = () => {
+  const [allData, setAllData] = useState([]);
+  const [ranking, setRanking] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectOption, setSelectOption] = useState("국내");
-  const [ranking, setRanking] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchTrip();
+    const fetchRanking = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/Review/Ranking"
+        );
+        if (Array.isArray(response.data)) {
+          setRanking(response.data);
+        } else {
+          console.error("ranking 응답이 배열이 아닙니다.");
+        }
+      } catch (error) {
+        console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
     fetchRanking();
   }, [selectOption]);
 
-  const fetchTrip = async () => {
+  const fetchData = async () => {
     try {
-      const response = await axios.get(`${SERVER_URL}/api/travelInfoes`);
-      const tripData = response.data._embedded.travelInfoes;
-      const filteredTrip = tripData.filter((trip) => {
-        if (selectOption === "국내") {
-          return trip.country === "대한민국";
-        } else {
-          return trip.country !== "대한민국";
-        }
-      });
-
-      const updatedData = filteredTrip.map((item) => {
-        const rankItem = ranking.find((rank) => rank.travelInfoId === item.id);
-        return rankItem ? { ...item, score: rankItem.avgScore } : item;
-      });
-
-      setTrips(updatedData);
+      const response = await axios.get(
+        "http://localhost:8080/api/travelInfoes"
+      );
+      const filteredData = response.data._embedded.travelInfoes.filter((item) =>
+        selectOption === "국내"
+          ? item.country === "대한민국"
+          : item.country !== "대한민국"
+      );
+      setAllData(filteredData);
+      handleSearch(filteredData);
     } catch (error) {
-      console.error("카테고리 목록 에러 발생: ", error);
+      console.error("데이터 가져오기 중 오류 발생:", error);
     }
   };
 
-  const fetchRanking = async () => {
-    try {
-      const response = await axios.get(`${SERVER_URL}/Review/Ranking`);
-      if (Array.isArray(response.data)) {
-        setRanking(response.data);
-      } else {
-        console.error("ranking 응답이 배열이 아닙니다.");
-      }
-    } catch (error) {
-      console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
-    }
+  const handleSearch = (data) => {
+    const updatedData = data.map((item) => {
+      const rankItem = ranking.find(
+        (rank) => rank.travelInfoId === gettripId(item)
+      );
+      return rankItem
+        ? { ...item, score: rankItem.avgScore, id: gettripId(item) }
+        : { ...item, score: null, id: gettripId(item) };
+    });
+
+    setAllData(updatedData);
   };
 
   const deleteSubmit = async (url) => {
     try {
       await axios.delete(`${url}`);
-      fetchTrip();
+      fetchData();
     } catch (error) {
       console.error("삭제 실패 :", error);
     }
   };
 
-  const totalPages = Math.ceil(trips.length / PAGE_SIZE);
-  const currentTrips = trips.slice(
+  const totalPages = Math.ceil(allData.length / PAGE_SIZE);
+  const currentTrips = allData.slice(
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE
   );
@@ -85,6 +92,12 @@ export default function Triplist() {
     const href = data._links.self.href;
     const id = href.substring(href.lastIndexOf("/") + 1);
     navigate(`/tripDetail/${id}`);
+  };
+
+  const gettripId = (data) => {
+    const href = data._links.self.href;
+    const id = href.substring(href.lastIndexOf("/") + 1);
+    return Number(id);
   };
 
   return (
@@ -108,15 +121,17 @@ export default function Triplist() {
                     src={trip.photoUrl}
                     alt={trip.placeName}
                     onClick={() => getId(trip)}
-                  ></img>
+                  />
                 </div>
                 <div className="category-info">
+                  <p>
+                    장소명: {trip.placeName} 평점:{" "}
+                    {trip.score !== null ? trip.score : "리뷰 없음"}
+                  </p>
                   <p>지역: {trip.region}</p>
                   <p>카테고리: {trip.category}</p>
-                  <p>장소명: {trip.placeName}</p>
-                  <p>별점: {trip.score || "평가 없음"}</p>
                   <p>
-                    <TripModal trip={trip} fetchTrip={fetchTrip} />
+                    <TripModal trip={trip} fetchTrip={fetchData} />
                     <RiDeleteBin5Line
                       className="category-icon"
                       onClick={() => deleteSubmit(trip._links.self.href)}
@@ -126,7 +141,6 @@ export default function Triplist() {
               </div>
             ))}
           </div>
-          <div></div>
         </div>
         <button
           id="left-button"
@@ -145,4 +159,6 @@ export default function Triplist() {
       </div>
     </div>
   );
-}
+};
+
+export default Triplist;
