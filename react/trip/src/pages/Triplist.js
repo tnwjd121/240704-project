@@ -16,26 +16,47 @@ const Triplist = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData();
-    fetchRanking();
+    const storedData = localStorage.getItem("TRIP_DATA");
+    const storedRanking = localStorage.getItem("TRIP_RANKING");
+    const storedOption = localStorage.getItem("SELECT_OPTION");
+
+    if (storedData && storedRanking && storedOption) {
+      setAllData(JSON.parse(storedData));
+      setRanking(JSON.parse(storedRanking));
+      setSelectOption(storedOption);
+    } else {
+      fetchDataAndRanking();
+    }
   }, []);
 
   useEffect(() => {
-    fetchData();
-    fetchRanking();
+    fetchDataAndRanking();
   }, [selectOption]);
+
+  const fetchDataAndRanking = async () => {
+    const rankingData = await fetchRanking();
+    const travelData = await fetchData();
+
+    handleSearch(travelData, rankingData);
+
+    localStorage.setItem("TRIP_DATA", JSON.stringify(travelData));
+    localStorage.setItem("TRIP_RANKING", JSON.stringify(rankingData));
+    localStorage.setItem("SELECT_OPTION", selectOption);
+  };
 
   const fetchRanking = async () => {
     try {
       const response = await axios.get("http://localhost:8080/Review/Ranking");
       if (Array.isArray(response.data)) {
         setRanking(response.data);
+        return response.data;
       } else {
         console.error("ranking 응답이 배열이 아닙니다.");
       }
     } catch (error) {
       console.error("랭킹 데이터 가져오기 중 오류 발생:", error);
     }
+    return [];
   };
 
   const fetchData = async () => {
@@ -43,21 +64,23 @@ const Triplist = () => {
       const response = await axios.get(
         "http://localhost:8080/api/travelInfoes"
       );
-      const filteredData = response.data._embedded.travelInfoes.filter((item) =>
-        selectOption === "국내"
-          ? item.country === "대한민국"
-          : item.country !== "대한민국"
+      const filteredData = response.data._embedded.travelInfoes.filter(
+        (item) =>
+          selectOption === "국내"
+            ? item.country === "대한민국"
+            : item.country !== "대한민국"
       );
       setAllData(filteredData);
-      handleSearch(filteredData);
+      return filteredData;
     } catch (error) {
       console.error("데이터 가져오기 중 오류 발생:", error);
     }
+    return [];
   };
 
-  const handleSearch = (data) => {
+  const handleSearch = (data, rankingData) => {
     const updatedData = data.map((item) => {
-      const rankItem = ranking.find(
+      const rankItem = rankingData.find(
         (rank) => rank.travelInfoId === gettripId(item)
       );
       return rankItem
@@ -71,7 +94,7 @@ const Triplist = () => {
   const deleteSubmit = async (url) => {
     try {
       await axios.delete(`${url}`);
-      fetchData();
+      fetchDataAndRanking();
     } catch (error) {
       console.error("삭제 실패 :", error);
     }
@@ -135,7 +158,7 @@ const Triplist = () => {
                   <p>지역: {trip.region}</p>
                   <p>카테고리: {trip.category}</p>
                   <p>
-                    <TripModal trip={trip} fetchTrip={fetchData} />
+                    <TripModal trip={trip} fetchTrip={fetchDataAndRanking} />
                     <RiDeleteBin5Line
                       className="category-icon"
                       onClick={() => deleteSubmit(trip._links.self.href)}
@@ -166,3 +189,4 @@ const Triplist = () => {
 };
 
 export default Triplist;
+
