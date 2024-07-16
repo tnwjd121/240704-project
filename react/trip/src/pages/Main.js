@@ -1,11 +1,12 @@
 import React from "react";
-import RankingSlide from "../components/RankingSlide";
+
 import '../css/main.css'
+import MainTripList from "./MainTripList";
 
 export default function Main() {
   return (
-    <div className="main-body">
-      <RankingSlide />
+    <div className="body">
+      <MainTripList/>
     </div>
   );
 }

@@ -1,0 +1,52 @@
+#main-trip{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 85rem;
+}
+
+#main-trip-item{
+  width: 14rem;
+  height: 12rem;
+  position: relative;
+  border-radius: 10px;
+  margin: 1rem 1rem;
+}
+
+.main-img img{
+  width: 14rem;
+  height: 12rem;
+  display: block;
+  border-radius: 10px;
+}
+
+.main-info-top{
+  width: 14rem;
+  height: 3rem;
+  font-size: 1.0rem;
+  text-align: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.411), rgba(255, 255, 255, 0));
+  border-radius: 10px;
+}
+.main-info-top p {
+  color: white;
+  margin: 0.5rem 1rem;
+}
+.main-info-bottom{
+  width: 14rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient( rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.411));
+  border-radius: 10px;
+}
+.main-info-bottom p {
+  color: white;
+  margin: 0.5rem 1rem;
+}
