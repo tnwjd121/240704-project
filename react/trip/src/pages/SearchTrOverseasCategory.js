@@ -118,7 +118,7 @@ const SearchTrOverseasCategory = () => {
                   <td>
                     <Link to={`/airportdetail`}>
                       <button className="path">
-                        공항편 정보 <FontAwesomeIcon icon={faLocationDot} />
+                        공항 정보 <FontAwesomeIcon icon={faLocationDot} />
                       </button>
                     </Link>
                   </td>
