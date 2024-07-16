@@ -53,7 +53,7 @@ export default function ShowRanking() {
         return b.avgScore - a.avgScore;
       }
     });
-    setSortedRanking(sorted);
+    setSortedRanking(sorted.slice(0,3));
   }, [ranking, sortOption]);
 
   const handleSortChange = (e) => {
