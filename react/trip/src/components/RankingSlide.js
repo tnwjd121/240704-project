@@ -162,13 +162,12 @@ const RankingSlide = () => {
         }}
       >
         {slideArr.map((item, index) => (
-          <div key={index} className="ImgBox" style={{ minWidth: "100vw" }}>
+          <div key={index} className="ImgBox">
             {item && item.photoUrl ? (
               <a href={`http://localhost:3000/tripDetail/${item.id}`}>
                 <img
                   src={item.photoUrl}
                   alt={`Slide ${index}`}
-                  style={{ width: "100%", height: "100%" }}
                 />
               </a>
             ) : (
