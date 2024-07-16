@@ -5,6 +5,7 @@ const {kakao} = window;
 export default function Kakao({address}) {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [error, setError] = useState(null)
   const API_KEY = '319544de936fb890f2a1d8e934ae6414';
 
 
@@ -25,8 +26,10 @@ export default function Kakao({address}) {
           const firstResult = data.documents[0];
           setLatitude(firstResult.y);
           setLongitude(firstResult.x);
+          setError(null)
         } else {
           console.log('검색 결과가 없습니다.');
+          setError('API 호출 오류');
         }
       } catch (error) {
         console.error('API 호출 오류:', error);
@@ -58,6 +61,36 @@ export default function Kakao({address}) {
 
 
   return (
-    <div id="map" style={{width:'50rem', height:'27rem'}}></div>
+    <>
+    {error ? (
+      <div style={{ position: 'relative', width: '50rem', height: '27rem', margin: '0 auto'}}>
+        <a href='https://www.google.co.kr/maps/?hl=ko&entry=ttu'
+          target='_blank'
+        >
+          <img 
+          src="https://i.namu.wiki/i/4LvjMNoCRJNjoJHyLj9_pbAqNHOOXZDnBogvcIKrpiqBf4qAAGQ3oGJQn6X7a_2IEaV-OSIFp-QvIf38oACKcA.webp"
+          alt="Error"
+          style={{ width: '50rem', height: '27rem', objectFit: 'cover' }}
+          />
+          <img
+          src='https://download.logo.wine/logo/Google_Maps/Google_Maps-Logo.wine.png' 
+          style={{
+            width:'40rem', 
+            height:'25rem',
+            position:'absolute',
+            top:'50%',
+            left:"50%",
+            transform:'translate(-50%, -50%)'
+          }}
+          alt='googleMap'
+          id='google-map'
+          >
+        </img>
+      </a>
+      </div>
+    ) : (
+      <div id="map" style={{width:'50rem', height:'27rem'}}></div>
+    )}
+    </>
   )
 }
