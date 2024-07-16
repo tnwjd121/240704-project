@@ -25,6 +25,7 @@ const Triplist = () => {
       setAllData(JSON.parse(storedData));
       setRanking(JSON.parse(storedRanking));
       setSelectOption(storedOption);
+      setTotalPages(Math.ceil(JSON.parse(storedData).length / PAGE_SIZE));
     } else {
       fetchDataAndRanking();
     }
@@ -84,7 +85,7 @@ const Triplist = () => {
         page++;
       }
 
-      handleSearch(allFetchedData);
+      return allFetchedData;
     } catch (error) {
       console.error("데이터 가져오기 중 오류 발생:", error);
     }
