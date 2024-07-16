@@ -53,7 +53,7 @@ export default function ShowRanking() {
         return b.avgScore - a.avgScore;
       }
     });
-    setSortedRanking(sorted.slice(0,3));
+    setSortedRanking(sorted);
   }, [ranking, sortOption]);
 
   const handleSortChange = (e) => {
@@ -86,6 +86,8 @@ export default function ShowRanking() {
     }
   });
 
+  const threeRank = filteredRanking.slice(0,3)
+
   const getId = (id) => {
     navigate(`/tripDetail/${id}`);
   };
@@ -106,7 +108,7 @@ export default function ShowRanking() {
         </select>
       </div>
       <div id="rank-body">
-        {filteredRanking.map((item) => {
+        {threeRank.map((item) => {
           const travelInfoItem = getTravelInfoById(item.travelInfoId);
           return (
             <div key={item.travelInfoId} className="rankBox">
