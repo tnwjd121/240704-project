@@ -31,7 +31,6 @@ export default function KFesDetail() {
   }
   
   return (
-    <div className='body'>
       <div id='fes-detail'>
         <h2>축제 상세</h2>
         <div id='fes-detail-info'>
@@ -54,6 +53,5 @@ export default function KFesDetail() {
         <p id='map-title'>상세 지도</p>
         <Kakao address={festival.address}/>
       </div>
-    </div>
   )
 }

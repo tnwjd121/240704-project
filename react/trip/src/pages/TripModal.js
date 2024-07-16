@@ -103,7 +103,7 @@ export default function TripModal({trip, fetchTrip}) {
           </label>
           <label>
             <span>상세</span>
-            <input id='description' type='text' value={updateTrips.description} onChange={handleChage} />
+            <input id='description' type='text' value={updateTrips.description} onChange={handleChage} style={{margin:'0'}}/>
           </label>
           <label>
             <span>이미지 URL</span>
