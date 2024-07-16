@@ -13,6 +13,7 @@ const Triplist = () => {
   const [ranking, setRanking] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectOption, setSelectOption] = useState("국내");
+  const [totalPages, setTotalPages] = useState(1);  // totalPages를 상태로 추가
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,17 +62,29 @@ const Triplist = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/travelInfoes"
-      );
-      const filteredData = response.data._embedded.travelInfoes.filter(
-        (item) =>
+      let allFetchedData = [];
+      let page = 0;
+      let hasMorePages = true;
+
+      while (hasMorePages) {
+        const response = await axios.get(`http://localhost:8080/api/travelInfoes?page=${page}&size=20`);
+        const data = response.data;
+
+        const filteredData = data._embedded.travelInfoes.filter((item) =>
           selectOption === "국내"
             ? item.country === "대한민국"
             : item.country !== "대한민국"
-      );
-      setAllData(filteredData);
-      return filteredData;
+        );
+
+        allFetchedData = [...allFetchedData, ...filteredData];
+
+        setTotalPages(data.page.totalPages);  // 전체 페이지 수 업데이트
+
+        hasMorePages = data.page.number < data.page.totalPages - 1;
+        page++;
+      }
+
+      handleSearch(allFetchedData);
     } catch (error) {
       console.error("데이터 가져오기 중 오류 발생:", error);
     }
@@ -100,7 +113,6 @@ const Triplist = () => {
     }
   };
 
-  const totalPages = Math.ceil(allData.length / PAGE_SIZE);
   const currentTrips = allData.slice(
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE

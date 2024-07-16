@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+C:\Users\ITPS\git\240704-project\spring\tripproject\.metadata\.plugins\org.eclipse.jdt.core

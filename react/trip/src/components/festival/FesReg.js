@@ -33,6 +33,12 @@ function FesReg() {
   const handleSave=async(event)=>{
     event.preventDefault();
 
+    const allFieldsFilled = Object.values(festival).every(field => field.trim() !== '');
+    if (!allFieldsFilled) {
+      alert('빈칸이 존재합니다. 모든 칸을 채워주세요.');
+      return;
+    }
+
     if(festival.startDate>festival.endDate){
       alert("축제 시작 날짜와 종료날짜를 다시 확인해주세요")
     }else if(festival.region==="" && festival.countryName===""){
@@ -70,7 +76,7 @@ function FesReg() {
   }
 
   const kRegion=[
-    {label:""},
+    {label:"", value:""},
     {value:"서울", label:"서울"},
     {value:"인천", label:"인천"},
     {value:"대전", label:"대전"},
