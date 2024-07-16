@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function FesEdit({festival, fetchFestivals}) {
   const [open, setOpen] = useState(false)
-  const[updateFes, setUpdateFes] = useState({
+  const [updateFes, setUpdateFes] = useState({
     country: '',
     countryName: '',
     region: '',
@@ -28,7 +28,16 @@ export default function FesEdit({festival, fetchFestivals}) {
     })
   }
 
-  const handleOpen = (e) =>{
+  const handleChange2 = (e) =>{
+    const{id,value} = e.target;
+    setUpdateFes({
+      ...updateFes,
+      [id]:value,
+      countryName:festival.countryName
+    })
+  }
+
+  const handleOpen = () =>{
     setUpdateFes({
       country : festival.country,
       countryName : festival.countryName,
@@ -51,6 +60,14 @@ export default function FesEdit({festival, fetchFestivals}) {
   }
 
   const handleSave = async(url) => {
+    
+    const allFieldsFilled = Object.values(updateFes).every(field => field.trim() !== '');
+    
+    if (!allFieldsFilled) {
+      alert('빈칸이 존재합니다. 모든 칸을 채워주세요.');
+      return;
+    }
+
     if(updateFes.startDate>updateFes.endDate){
       alert("축제 시작 날짜와 종료날짜를 다시 확인해주세요")
     }else{
@@ -100,7 +117,7 @@ export default function FesEdit({festival, fetchFestivals}) {
           }))
           document.getElementById("address").value = addr;
       }
-  }).open();
+    }).open();
   }
   
   return (
@@ -114,7 +131,7 @@ export default function FesEdit({festival, fetchFestivals}) {
           </label>
           <label>
             <span>국내/해외</span>
-            <select id="country" value={updateFes.country} onChange={handleChange}>
+            <select id="country" value={updateFes.country} onChange={handleChange2}>
               <option>국내</option>
               <option>해외</option>
             </select>
@@ -123,11 +140,11 @@ export default function FesEdit({festival, fetchFestivals}) {
             <>
               <label>
                 <span>국가명</span>
-                <input type="text" name="countryName" value={updateFes.countryName="대한민국"} onChange={handleChange} readOnly/>
+                <input id="countryName" value={updateFes.countryName="대한민국"} onChange={handleChange} readOnly/>
               </label>
               <label>
                 <span>지역</span>
-                <select type="text" id="region" value={updateFes.region} onChange={handleChange}>
+                <select id="region" value={updateFes.region} onChange={handleChange}>
                 {kRegion.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -145,7 +162,7 @@ export default function FesEdit({festival, fetchFestivals}) {
               </label>
               <label>
                 <span>지역</span>
-                <input type="text" name="region" value={updateFes.region} onChange={handleChange} />
+                <input type="text" id="region" value={updateFes.region} onChange={handleChange} />
               </label>
             </>
           )}
@@ -165,7 +182,7 @@ export default function FesEdit({festival, fetchFestivals}) {
           {updateFes.country==="해외" && (
             <label>
               <span>주소</span>
-              <input type="text" name="address" value={festival.address} onChange={handleChange} />
+              <input type="text" id="address" value={updateFes.address} onChange={handleChange} />
             </label>
           )}
           <label>

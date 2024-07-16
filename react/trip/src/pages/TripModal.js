@@ -41,6 +41,11 @@ export default function TripModal({trip, fetchTrip}) {
   }
 
   const handleSave = async(url) => {
+    const allFieldsFilled = Object.values(updateTrips).every(field => field.trim() !== '');
+    if (!allFieldsFilled) {
+      alert('모든 필드를 채워주세요.');
+      return;
+    }
     try {
       const response = await axios.put(`${url}`,updateTrips)
       console.log(url)

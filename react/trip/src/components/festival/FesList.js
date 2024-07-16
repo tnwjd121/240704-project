@@ -42,14 +42,17 @@ export default function Feslist() {
   }
 
   const deleteSubmit = async (url) =>{
-    try {
-      const response = await axios.delete(`${url}`)
-      fetchFestivals()
-      console.log(url)
-    } catch (error) {
-      console.error("삭제 실패 :", error);
+    if(window.confirm("정말 삭제하시겠습니까?")){
+      try {
+        const response = await axios.delete(`${url}`)
+        fetchFestivals()
+        console.log(url)
+      } catch (error) {
+        console.error("삭제 실패 :", error);
+      }
     }
   } 
+  
   const totalPages = Math.ceil(festivals.length / PAGE_SIZE);
   const currentFestivals = festivals.slice((currentPage -1)*PAGE_SIZE, currentPage *PAGE_SIZE);
 
