@@ -21,7 +21,19 @@ const WayDetail = () => {
         console.error('Error fetching destination address:', error);
       }
     };
+    fetchDestinationAddress();
+  }, [id]);
 
+  useEffect(() => {
+    const fetchDestinationAddress = async () => {
+      try {
+        const response = await axios.get(`${SERVER_URL}/api/festivals/${id}`);
+        setDestinationAddress(response.data.address);
+        setDestinationName(response.data.fesName);
+      } catch (error) {
+        console.error('Error fetching destination address:', error);
+      }
+    };
     fetchDestinationAddress();
   }, [id]);
 
