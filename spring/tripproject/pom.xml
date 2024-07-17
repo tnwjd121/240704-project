@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tripproject</name>
 	<description>trip App Project for Spring Boot</description>
+	<!-- 배포 형식 지정 -->
+	<packaging>jar</packaging>
 	<url/>
 	<licenses>
 		<license/>
